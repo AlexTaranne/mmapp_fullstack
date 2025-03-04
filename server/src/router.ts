@@ -17,6 +17,6 @@ router.post("/api/items", itemActions.add);
 
 import fighterActions from "./modules/fighter/fighterActions";
 
-router.get("/api/fighter", fighterActions.browse)
-router.post("/api/fighter", fighterActions.add)
+router.get("/api/fighter", fighterActions.browse);
+router.post("/api/fighter", fighterActions.add);
 export default router;

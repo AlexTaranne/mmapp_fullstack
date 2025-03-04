@@ -1,0 +1,23 @@
+.section-add {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  img {
+    height: 4rem;
+  }
+}
+
+.card-fighter {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border: solid 1px black;
+  width: 40rem;
+  padding: 1rem;
+}
+
+form {
+  display: flex;
+}
