@@ -22,8 +22,7 @@ export default function Homepagedetails({ event }: EventDetailsProps) {
 
   return (
     <div className="detailsevent">
-      <h2>{event.Name}</h2>
-      <h3>{event.ShortName}</h3>
+      <h3>{event.Name}</h3>
       <p>{formatDate(event.DateTime)}</p>
     </div>
   );
