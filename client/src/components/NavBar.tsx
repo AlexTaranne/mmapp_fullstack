@@ -13,6 +13,7 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="title">
+        <img src="/belt.png" alt="" />
         <h1 className="navbar-logo">MMAPP</h1>
       </div>
       <section>
@@ -31,6 +32,9 @@ export default function NavBar() {
             <Link to="/ranking">Ranking</Link>
           </li>
           <li>
+            <Link to="/ranking">News</Link>
+          </li>
+          <li className="last-a">
             <Link to="/login">Se connecter</Link>
           </li>
         </ul>
