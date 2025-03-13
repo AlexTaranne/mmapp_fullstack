@@ -10,10 +10,17 @@ export default function NavBar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Fonction pour fermer le menu
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <nav className="navbar">
       <div className="title">
-        <img src="/belt.png" alt="" />
+        <Link to="/" onClick={closeMenu}>
+          <img src="/belt.png" alt="" />
+        </Link>
         <h1 className="navbar-logo">MMAPP</h1>
       </div>
       <section>
@@ -23,19 +30,29 @@ export default function NavBar() {
 
         <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
           <li>
-            <Link to="/fighters">Fighters</Link>
+            <Link to="/fighters" onClick={closeMenu}>
+              Fighters
+            </Link>
           </li>
           <li>
-            <Link to="/events">Events</Link>
+            <Link to="/events" onClick={closeMenu}>
+              Events
+            </Link>
           </li>
           <li>
-            <Link to="/ranking">Ranking</Link>
+            <Link to="/ranking" onClick={closeMenu}>
+              Ranking
+            </Link>
           </li>
           <li>
-            <Link to="/ranking">News</Link>
+            <Link to="/news" onClick={closeMenu}>
+              News
+            </Link>
           </li>
           <li className="last-a">
-            <Link to="/login">Se connecter</Link>
+            <Link to="/auth" onClick={closeMenu}>
+              Se connecter
+            </Link>
           </li>
         </ul>
       </section>

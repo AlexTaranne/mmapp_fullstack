@@ -14,9 +14,23 @@ router.get("/api/items/:id", itemActions.read);
 router.post("/api/items", itemActions.add);
 
 /* ************************************************************************* */
-
+import auth from "./middleware/auth";
 import fighterActions from "./modules/fighter/fighterActions";
+import useActions from "./modules/user/useActions";
 
 router.get("/api/fighter", fighterActions.browse);
 router.post("/api/fighter", fighterActions.add);
+router.get("/api/fighter/:firstName-:lastName", fighterActions.read);
+
+router.get("/api/users", useActions.browse);
+
+router.get("/api/users/:id", useActions.read);
+router.post(
+  "/api/users",
+
+  auth.hashPassword,
+  useActions.add,
+);
+router.post("/api/login", auth.login);
+router.delete("/api/users/:id", useActions.destroy);
 export default router;

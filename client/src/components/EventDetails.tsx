@@ -38,7 +38,11 @@ export default function EventDetails({ event }: EventDetailsProps) {
     <section className="results">
       <div className="fights">
         <Link
-          to={`/fighterdetails/${fighter1FirstName.toLowerCase().trim()}-${fighter1LastName.toLowerCase().trim()} `}
+          to={`/fighterdetails/${
+            fighter1FirstName.length <= fighter1LastName.length
+              ? `${fighter1FirstName.toLowerCase().trim()}-${fighter1LastName.toLowerCase().trim()}`
+              : `${fighter1LastName.toLowerCase().trim()}-${fighter1FirstName.toLowerCase().trim()}`
+          }`}
           className="fight"
         >
           <h2>

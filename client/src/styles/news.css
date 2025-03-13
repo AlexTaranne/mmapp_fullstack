@@ -1,0 +1,35 @@
+.card-news {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  img {
+    height: 10rem;
+    padding: 0.5rem;
+    border-radius: var(--radius);
+  }
+}
+
+.news-cards {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  h2 {
+    text-align: center;
+    margin: 1rem;
+    font-family: var(--secondary-font);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .card-news {
+    flex-wrap: nowrap;
+    flex-direction: column;
+
+    img {
+      height: 20rem;
+      width: 30rem;
+      border-radius: var(--radius);
+    }
+  }
+}

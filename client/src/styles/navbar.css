@@ -65,6 +65,7 @@
     color: black;
     ul {
       display: none;
+      margin: 0;
     }
   }
 

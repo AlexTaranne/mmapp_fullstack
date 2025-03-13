@@ -9,6 +9,21 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 
+const read: RequestHandler = async (req, res, next) => {
+  try {
+    const { firstName, lastName } = req.params; // Récupération des paramètres
+    const fighter = await fighterRepository.readByName(firstName, lastName);
+
+    if (!fighter) {
+      res.sendStatus(404);
+    } else {
+      res.json(fighter);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add: RequestHandler = async (req, res, next) => {
   try {
     const insertId = await fighterRepository.create(req.body);
@@ -19,4 +34,4 @@ const add: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
-export default { browse, add };
+export default { browse, add, read };

@@ -7,10 +7,22 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+import FighterDetails from "./components/FighterDetails";
+import SignupForm from "./components/SignupForm";
+import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Event from "./pages/Event";
+import Fighters from "./pages/Fighters";
 import Homepage from "./pages/Homepage";
-import { getEvent, getSchedule } from "./services/request";
+import News from "./pages/News";
+import {
+  getEvent,
+  getFighterByName,
+  getFightersBdd,
+  getNews,
+  getRankings,
+  getSchedule,
+} from "./services/request";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -30,7 +42,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homepage />,
-        loader: getSchedule,
+        loader: async () => ({
+          data: await getSchedule(),
+          news: await getNews(),
+          rankings: await getRankings(),
+        }),
       },
       {
         path: "/dashboard",
@@ -41,6 +57,41 @@ const router = createBrowserRouter([
         path: "/event/:eventid",
         element: <Event />,
         loader: ({ params }) => getEvent(Number(params.eventid)),
+      },
+      {
+        path: "/fighters",
+        element: <Fighters />,
+        loader: getFightersBdd,
+      },
+      {
+        path: "/fighterdetails/:fighterId",
+        loader: ({ params }) => {
+          if (!params.fighterId) {
+            throw new Error("Fighter ID is required");
+          }
+
+          const [firstName, lastName] = params.fighterId.split("-");
+
+          if (!firstName || !lastName) {
+            throw new Error("Invalid fighter ID format");
+          }
+
+          return getFighterByName(firstName, lastName);
+        },
+        element: <FighterDetails />,
+      },
+      {
+        path: "/news",
+        element: <News />,
+        loader: getNews,
+      },
+      {
+        path: "/auth",
+        element: <Auth />,
+      },
+      {
+        path: "/signup",
+        element: <SignupForm />,
       },
     ],
   }, // Try adding a new route! For example, "/about" with an About component
