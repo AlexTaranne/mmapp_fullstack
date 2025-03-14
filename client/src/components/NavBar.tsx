@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useAuth } from "../services/AuthContext";
 import "../styles/navbar.css";
 
 export default function NavBar() {
@@ -9,12 +10,48 @@ export default function NavBar() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
-  // Fonction pour fermer le menu
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+  const { role, setRole } = useAuth();
 
+  const disconnet = () => {
+    setRole("anonymous");
+  };
+
+  const links = [
+    {
+      name: "Fighters",
+      path: "/fighters",
+      role: ["anonymous", "utilisateur", "administrateur"],
+    },
+    {
+      name: "Events",
+      path: "/events",
+      role: ["anonymous", "utilisateur", "administrateur"],
+    },
+    {
+      name: "Rankings",
+      path: "/ranking",
+      role: ["anonymous", "utilisateur", "administrateur"],
+    },
+    {
+      name: "News",
+      path: "/news",
+      role: ["anonymous", "utilisateur", "administrateur"],
+    },
+    {
+      name: "Se connecter",
+      path: "/auth",
+      role: ["anonymous"],
+    },
+    {
+      name: "Dashboard",
+      path: "/dashboard",
+      role: ["administrateur"],
+    },
+  ];
+  console.info("Current role:", role);
   return (
     <nav className="navbar">
       <div className="title">
@@ -29,33 +66,22 @@ export default function NavBar() {
         </div>
 
         <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
-          <li>
-            <Link to="/fighters" onClick={closeMenu}>
-              Fighters
-            </Link>
-          </li>
-          <li>
-            <Link to="/events" onClick={closeMenu}>
-              Events
-            </Link>
-          </li>
-          <li>
-            <Link to="/ranking" onClick={closeMenu}>
-              Ranking
-            </Link>
-          </li>
-          <li>
-            <Link to="/news" onClick={closeMenu}>
-              News
-            </Link>
-          </li>
-          <li className="last-a">
-            <Link to="/auth" onClick={closeMenu}>
-              Se connecter
-            </Link>
-          </li>
+          {links
+            .filter((link) => link.role.includes(role))
+            .map((link) => (
+              <li key={link.name}>
+                <Link to={link.path} onClick={closeMenu}>
+                  {link.name}
+                </Link>
+              </li>
+            ))}
         </ul>
       </section>
+      {role !== "anonymous" ? (
+        <button type="button" onClick={disconnet}>
+          Se déconnecter
+        </button>
+      ) : null}
     </nav>
   );
 }

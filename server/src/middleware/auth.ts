@@ -56,7 +56,7 @@ const login: RequestHandler = async (req, res, next) => {
       });
 
       res.cookie("auth", token);
-      res.send(`${user.role}`);
+      res.json({ role: user.role });
     }
   } catch (error) {
     next(error);
