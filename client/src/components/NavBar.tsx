@@ -26,8 +26,8 @@ export default function NavBar() {
       role: ["anonymous", "utilisateur", "administrateur"],
     },
     {
-      name: "Events",
-      path: "/events",
+      name: "Schedule",
+      path: "/schedule",
       role: ["anonymous", "utilisateur", "administrateur"],
     },
     {
@@ -50,8 +50,13 @@ export default function NavBar() {
       path: "/dashboard",
       role: ["administrateur"],
     },
+    {
+      name: "Odds",
+      path: "/odds",
+      role: ["utilisateur", "administrateur"],
+    },
   ];
-  console.info("Current role:", role);
+
   return (
     <nav className="navbar">
       <div className="title">
@@ -75,13 +80,15 @@ export default function NavBar() {
                 </Link>
               </li>
             ))}
+          {role !== "anonymous" ? (
+            <Link to="/">
+              <li onClick={disconnet} onKeyDown={disconnet}>
+                Disconnect
+              </li>
+            </Link>
+          ) : null}
         </ul>
       </section>
-      {role !== "anonymous" ? (
-        <button type="button" onClick={disconnet}>
-          Se déconnecter
-        </button>
-      ) : null}
     </nav>
   );
 }

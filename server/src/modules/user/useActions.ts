@@ -27,11 +27,10 @@ const read: RequestHandler = async (req, res, next) => {
 const add: RequestHandler = async (req, res, next) => {
   try {
     const user = {
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email,
       hashedPassword: req.body.hashed_password,
-
       role: req.body.role,
     };
     const insertId = await userRepository.create(user);

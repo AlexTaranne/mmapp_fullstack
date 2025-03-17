@@ -1,15 +1,27 @@
 import axios from "axios";
 
 const KEY = import.meta.env.VITE_API_KEY;
+const KEY_2 = import.meta.env.VITE_API_KEY_2;
 const API = import.meta.env.VITE_API_URL;
 
 interface UserData {
   id: number;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   confirmPassword: string;
+}
+
+interface FighterType {
+  lastName: string;
+  firstName: string;
+  nationality: string;
+  photo: string;
+  category_id: number;
+  wins: number;
+  losses: number;
+  nickname: string;
 }
 
 const getSchedule = () => {
@@ -94,12 +106,35 @@ const createUser = (userData: UserData): Promise<boolean> => {
   });
 };
 
+const getOdds = () => {
+  return axios
+    .get(
+      `https://api.the-odds-api.com/v4/sports/mma_mixed_martial_arts/odds/?apiKey=${KEY_2}&regions=us&markets=h2h`,
+    )
+    .then((response) => response.data);
+};
+
+const editFighter = async (id: number, updatedFighter: FighterType) => {
+  try {
+    const response = await axios.put(
+      `${API}/api/fighter/${id}`,
+      updatedFighter,
+    );
+    return response;
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour du film :", error);
+    throw error;
+  }
+};
+
 export {
   createUser,
+  editFighter,
   getSchedule,
   getEvent,
   getNews,
   getRankings,
   getFightersBdd,
   getFighterByName,
+  getOdds,
 };

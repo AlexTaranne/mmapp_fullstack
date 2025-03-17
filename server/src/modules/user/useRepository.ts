@@ -3,6 +3,8 @@ import databaseClient from "../../../database/client";
 import type { Result, Rows } from "../../../database/client";
 type User = {
   id: number;
+  lastName: string;
+  firstName: string;
   email: string;
   hashedPassword: string;
   role: string;
@@ -11,8 +13,8 @@ type User = {
 class UserRepository {
   async create(user: Omit<User, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "insert into user (email, hashed_password) values (?, ?)",
-      [user.email, user.hashedPassword],
+      "insert into user (firstName, lastName, email, hashed_password) values (?, ?, ?, ?)",
+      [user.firstName, user.lastName, user.email, user.hashedPassword],
     );
 
     return result.insertId;

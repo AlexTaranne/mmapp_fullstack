@@ -2,6 +2,7 @@ import type { RowDataPacket } from "mysql2";
 import databaseClient from "../../../database/client";
 import type { Result, Rows } from "../../../database/client";
 type Fighter = {
+  id: number;
   lastName: string;
   firstName: string;
   nationality: string;
@@ -35,10 +36,44 @@ class fighterRepository {
 
   async create(fighter: Omit<Fighter, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "insert into fighter (lastName, firstName, nationality, photo) values (?, ?, ?, ?)",
-      [fighter.lastName, fighter.firstName, fighter.nationality, fighter.photo],
+      "insert into fighter (lastName, firstName, nationality, photo, wins, losses, nickname) values (?, ?, ?, ?, ?, ?, ?)",
+      [
+        fighter.lastName,
+        fighter.firstName,
+        fighter.nationality,
+        fighter.photo,
+        fighter.wins,
+        fighter.losses,
+        fighter.nickname,
+      ],
     );
     return result.insertId;
+  }
+
+  async delete(id: number): Promise<number> {
+    const [result] = await databaseClient.query<Result>(
+      "delete from fighter where id = ?",
+      [id],
+    );
+    return result.affectedRows;
+  }
+
+  async update(fighter: Fighter): Promise<number> {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE fighter SET lastname = ?, firstname = ?, nationality = ?, photo = ?, category_id = ?, wins = ?, losses = ?, nickname = ? WHERE id = ?",
+      [
+        fighter.lastName,
+        fighter.firstName,
+        fighter.nationality,
+        fighter.photo,
+        fighter.category_id,
+        fighter.wins,
+        fighter.losses,
+        fighter.nickname,
+        fighter.id,
+      ],
+    );
+    return result.affectedRows;
   }
 }
 export default new fighterRepository();

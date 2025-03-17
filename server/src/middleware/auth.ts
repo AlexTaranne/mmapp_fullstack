@@ -1,8 +1,6 @@
 import argon2 from "argon2";
-import jwt from "jsonwebtoken";
-
 import type { RequestHandler } from "express";
-
+import jwt from "jsonwebtoken";
 import userRepository from "../modules/user/useRepository";
 
 const hashingOptions = {
@@ -29,7 +27,7 @@ const login: RequestHandler = async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await userRepository.readByEmailWithPassword(email);
-    console.info(user);
+
     if (!user) {
       res.sendStatus(422);
     }
@@ -41,6 +39,8 @@ const login: RequestHandler = async (req, res, next) => {
     } else {
       const payload = {
         id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
         role: user.role,
       };
@@ -56,7 +56,11 @@ const login: RequestHandler = async (req, res, next) => {
       });
 
       res.cookie("auth", token);
-      res.json({ role: user.role });
+      res.json({
+        role: user.role,
+        lastName: user.lastName,
+        firstName: user.firstName,
+      });
     }
   } catch (error) {
     next(error);

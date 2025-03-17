@@ -16,7 +16,6 @@ CREATE TABLE fighter (
   nickname VARCHAR(255) DEFAULT NULL,
   CONSTRAINT fk_category FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE SET NULL
 );
--- Création de la vue pour récupérer les fighters avec leur catégorie
 CREATE VIEW fighter_view AS
 SELECT 
   fighter.id, 
@@ -33,13 +32,15 @@ LEFT JOIN category ON fighter.category_id = category.id;
 
 CREATE TABLE user (
   id INT AUTO_INCREMENT PRIMARY KEY,
+  firstName VARCHAR (255),
+  lastName VARCHAR (255),
   email varchar(255) not null unique,
   hashed_password VARCHAR(255) not null,
    role VARCHAR(50) NOT NULL DEFAULT 'utilisateur'
 );
 
-INSERT into user (email, hashed_password, role) values ("alex@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$PFBU/IIofJEU6xalUJqz6w$f1V+bZ7QACupP0IZAKs3c1Q57IHVbNbf+6W6grp5+4I", "administrateur");
--- Insertion des catégories
+INSERT into user (firstName, lastName, email, hashed_password, role) values ("Alex", "Taranne", "alex@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$PFBU/IIofJEU6xalUJqz6w$f1V+bZ7QACupP0IZAKs3c1Q57IHVbNbf+6W6grp5+4I", "administrateur");
+
 INSERT INTO category (name) VALUES 
 ('Flyweight'), 
 ('Bantamweight'), 
@@ -198,8 +199,8 @@ VALUES
   
 INSERT INTO fighter (lastName ,firstName , nationality, photo, category_id, wins, losses, nickname) 
 VALUES
-  ("Oumar", "Sy", "France", "https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2024-09/SY_OUMAR_L_09-28.png?itok=t2Vgwrqz", 7, 9, 1, "Zoo"),
-  ("Morgan", "Charriére", "France", "https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2024-09/CHARRIERE_MORGAN_L_09-28.png?itok=gz8rxX8J", 3, 20, 10, "The Last Pirate"),
+  ("Sy", "Oumar", "France", "https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2024-09/SY_OUMAR_L_09-28.png?itok=t2Vgwrqz", 7, 9, 1, "Zoo"),
+  ("Charrière","Morgan" , "France", "https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2024-09/CHARRIERE_MORGAN_L_09-28.png?itok=gz8rxX8J", 3, 20, 10, "The Last Pirate"),
   ("Cyril", "Gane", "France", "https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2025-01/5/GANE_CIRYL_L_12-07.png?itok=FskbLuVB", 8, 13, 2, "Bon Gamin"),
   ("Kelvin", "Gastelum", "USA", "https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2024-06/GASTELUM_KELVIN_L_06-22.png?itok=vDE-t591", 7, 19, 9,""),
   ("Drew", "Dober", "USA", "https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2024-07/DOBER_DREW_L_07-13.png?itok=_4hmtKXV", 4, 27, 14, ""),

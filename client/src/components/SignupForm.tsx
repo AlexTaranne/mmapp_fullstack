@@ -5,8 +5,8 @@ import { createUser } from "../services/request";
 
 interface UserData {
   id: number;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -15,8 +15,8 @@ interface UserData {
 export default function SignupForm() {
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -72,6 +72,29 @@ export default function SignupForm() {
           value={user.email}
           onChange={handleChangeForm}
           placeholder="Votre adresse email"
+        />
+
+        <label htmlFor="lastName">
+          Lastname<p>*</p>
+        </label>
+        <input
+          type="lastName"
+          id="lastName"
+          name="lastName"
+          value={user.lastName}
+          onChange={handleChangeForm}
+          placeholder="Your lastname"
+        />
+        <label htmlFor="firstName">
+          Firstname<p>*</p>
+        </label>
+        <input
+          type="firstName"
+          id="firstName"
+          name="firstName"
+          value={user.firstName}
+          onChange={handleChangeForm}
+          placeholder="Your firstname"
         />
         <div className="password-input">
           <label htmlFor="password">

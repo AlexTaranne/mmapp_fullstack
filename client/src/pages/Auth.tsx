@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../services/AuthContext";
 
 export default function Auth() {
@@ -15,7 +15,7 @@ export default function Auth() {
       [e.currentTarget.name]: e.currentTarget.value,
     });
   };
-
+  const navigate = useNavigate();
   const { setRole } = useAuth();
 
   const sendCredentials = (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,6 +27,13 @@ export default function Auth() {
       .then((response) => {
         setRole(response.data.role);
         console.info(response);
+        if (response.data.role === "administrateur") {
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 3000);
+        } else {
+          navigate("/");
+        }
       })
       .catch((error) => console.error(error));
   };

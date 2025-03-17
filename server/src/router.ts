@@ -21,16 +21,13 @@ import useActions from "./modules/user/useActions";
 router.get("/api/fighter", fighterActions.browse);
 router.post("/api/fighter", fighterActions.add);
 router.get("/api/fighter/:firstName-:lastName", fighterActions.read);
+router.delete("/api/fighter/:id", fighterActions.destroy);
+router.put("/api/fighter/:id", fighterActions.edit);
 
 router.get("/api/users", useActions.browse);
 
 router.get("/api/users/:id", useActions.read);
-router.post(
-  "/api/users",
-
-  auth.hashPassword,
-  useActions.add,
-);
+router.post("/api/users", auth.hashPassword, useActions.add);
 router.post("/api/login", auth.login);
 router.delete("/api/users/:id", useActions.destroy);
 export default router;

@@ -16,11 +16,14 @@ import Event from "./pages/Event";
 import Fighters from "./pages/Fighters";
 import Homepage from "./pages/Homepage";
 import News from "./pages/News";
+import Odds from "./pages/Odds";
+import Schedule from "./pages/Schedule";
 import {
   getEvent,
   getFighterByName,
   getFightersBdd,
   getNews,
+  getOdds,
   getRankings,
   getSchedule,
 } from "./services/request";
@@ -93,6 +96,16 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignupForm />,
+      },
+      {
+        path: "/schedule",
+        element: <Schedule />,
+        loader: getSchedule,
+      },
+      {
+        path: "/odds",
+        element: <Odds />,
+        loader: getOdds,
       },
     ],
   }, // Try adding a new route! For example, "/about" with an About component
