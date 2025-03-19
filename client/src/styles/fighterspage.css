@@ -15,4 +15,16 @@
 
 .sort-options {
   margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+}
+
+.list-fighters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  a {
+    color: var(--secondary-color);
+  }
 }

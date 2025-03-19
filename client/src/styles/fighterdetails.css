@@ -5,10 +5,41 @@
   gap: 1rem;
   margin-top: 1rem;
   img {
-    height: 30rem;
-    width: 22rem;
+    height: 38rem;
+    width: 28rem;
   }
   h1 {
     font-family: var(--secondary-font);
+  }
+}
+.details-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.details-right {
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 768px) {
+  .fighter-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .details-right {
+    background-color: rgba(128, 128, 128, 0.216);
+    height: 41.5rem;
+    gap: 2rem;
+    width: 30%;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+  }
+  .details-left {
+    background-color: rgba(128, 128, 128, 0.216);
+    width: 50%;
+    border-radius: 4px;
   }
 }

@@ -30,7 +30,7 @@ export default function DashboardAdd() {
 
   const fetchFighters = useCallback(() => {
     axios
-      .get("http://localhost:3310/api/fighter")
+      .get("http://localhost:3310/api/fighter", { withCredentials: true })
       .then((response) => {
         console.info("Données récupérées :", response.data);
         setFighters(response.data);

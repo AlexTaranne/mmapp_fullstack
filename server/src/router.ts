@@ -30,4 +30,13 @@ router.get("/api/users/:id", useActions.read);
 router.post("/api/users", auth.hashPassword, useActions.add);
 router.post("/api/login", auth.login);
 router.delete("/api/users/:id", useActions.destroy);
+
+router.get(
+  "/api/checkAdmin",
+  auth.verify,
+  auth.checkIfAdmin,
+  useActions.sendSuccessStatus,
+);
+
+router.get("/api/logout", auth.logout);
 export default router;

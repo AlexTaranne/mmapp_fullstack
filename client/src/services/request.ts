@@ -127,13 +127,32 @@ const editFighter = async (id: number, updatedFighter: FighterType) => {
   }
 };
 
+const getRankingsById = (divisionId: string) => {
+  return axios
+    .get(`https://api.octagon-api.com/division/${divisionId}`)
+    .then((response) => response.data);
+};
+
+const getAuthorization = () => {
+  return axios
+    .get("http://localhost:3310/api/checkAdmin", {
+      withCredentials: true,
+    })
+    .then((response) => response)
+    .catch((error) => {
+      throw new Error(error);
+    });
+};
+
 export {
   createUser,
   editFighter,
+  getAuthorization,
   getSchedule,
   getEvent,
   getNews,
   getRankings,
+  getRankingsById,
   getFightersBdd,
   getFighterByName,
   getOdds,

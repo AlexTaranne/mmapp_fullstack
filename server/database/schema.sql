@@ -39,7 +39,9 @@ CREATE TABLE user (
    role VARCHAR(50) NOT NULL DEFAULT 'utilisateur'
 );
 
-INSERT into user (firstName, lastName, email, hashed_password, role) values ("Alex", "Taranne", "alex@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$PFBU/IIofJEU6xalUJqz6w$f1V+bZ7QACupP0IZAKs3c1Q57IHVbNbf+6W6grp5+4I", "administrateur");
+INSERT into user (firstName, lastName, email, hashed_password, role) values 
+("Alex", "Taranne", "alex@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$PFBU/IIofJEU6xalUJqz6w$f1V+bZ7QACupP0IZAKs3c1Q57IHVbNbf+6W6grp5+4I", "administrateur"),
+("toto", "toto", "alextaranne@gmail.com","$argon2id$v=19$m=19456,t=2,p=1$PFBU/IIofJEU6xalUJqz6w$f1V+bZ7QACupP0IZAKs3c1Q57IHVbNbf+6W6grp5+4I", "utilisateur" );
 
 INSERT INTO category (name) VALUES 
 ('Flyweight'), 
@@ -189,7 +191,15 @@ VALUES
   ("Buckley", "Joaquin", "USA", "https://www.octagon-api.com/fighters/joaquin-buckley.webp", 6),
   ("Cornolle", "Nora", "France", "https://www.octagon-api.com/fighters/nora-cornolle.webp", 2),
   ("Santos", "Yana", "Russie", "https://www.octagon-api.com/fighters/yana-santos.webp", 2),
-  ("Rosa", "Karol", "Brésil", "https://www.octagon-api.com/fighters/karol-rosa.webp", 2);
+  ("Rosa", "Karol", "Brésil", "https://www.octagon-api.com/fighters/karol-rosa.webp", 2),
+  ("Luciendo", "Iasmin", "Brésil", "https://www.octagon-api.com/fighters/iasmin-lucindo.webp", 1),
+  ("Maverick", "Miranda", "USA  ", "https://www.octagon-api.com/fighters/miranda-maverick.webp", 2),
+  ("Da Silva", "Ariane", "Brésil", "https://www.octagon-api.com/fighters/ariane-da-silva.webp", 2),
+  ("De Ridder", "Reinier", "Netherlands", "https://www.octagon-api.com/fighters/reinier-de-ridder.webp", 6),
+  ("Teixeira", "Tallison", "Brazil", "https://www.octagon-api.com/fighters/tallison-teixeira.webp", 8),
+  ("Nzechukwu","Kennedy", "USA", "https://www.octagon-api.com/fighters/kennedy-nzechukwu.webp", 8),
+  ("Dern", "Mackenzie", "USA", "https://www.octagon-api.com/fighters/mackenzie-dern.webp", 2);
+
 
 
 
@@ -213,7 +223,11 @@ VALUES
   ("Anderson", "Corey", "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2020-02/ANDERSON_COREY_L.png?VersionId=.CDYKJ1oE6XrUF64Z67E0wo20v4GTQ39&itok=ZjcXA3px", 7, 14, 5, "Overtime"),
   ("Nick", "Diaz" , "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2021-09/68907%252Fprofile-galery%252Ffullbodyleft-picture%252FDIAZ_NICK_L_09-25.png?itok=BKjybtEW", 6, 26, 11, ""),
   ("Robbie", "Lawler", "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2023-07/LAWLER_ROBBIE_L_07-08.png?itok=l4zNY6F4", 6, 30, 16, "Ruthless"),
-  ("Niko", "Price", "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-05/PRICE_NIKO_L_06-01.png?itok=chooWOHY", 6, 16, 8, "The Hybrid"); 
+  ("Niko", "Price", "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-05/PRICE_NIKO_L_06-01.png?itok=chooWOHY", 6, 16, 8, "The Hybrid"),
+  ("Nickal","Bo" , "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-11/NICKAL_BO_L_11-16.png?itok=Ny0jQ60x", 6, 7, 0, "Dagestani Killer"),
+  ("Stephens","Jeremy" , "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2021-04/68227%252Fprofile-galery%252Ffullbodyleft-picture%252FSTEPHENS_JEREMY_L_04-17.png?itok=r9oqGjwu", 4, 28, 19, "Lil' Heaten"),
+  ("Jones", "Mason", "Wales", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2022-07/JONES_MASON_L_07-23.png?itok=OwyGfGD6", 4, 11, 2, "The Dragon"),
+  ("Nelson","Gunnar" , 'Iceland', "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2023-03/NELSON_GUNNAR_L_03-18.png?itok=_usckJU4", 6, 19, 5, "Gunni");
   
 
 

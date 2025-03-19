@@ -1,3 +1,4 @@
+import "../styles/schedule.css";
 interface EventProps {
   Name: string;
   DateTime: string;

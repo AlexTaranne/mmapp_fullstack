@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "../styles/eventdetails.css";
 
 interface Fighter {
   FirstName: string;
@@ -25,6 +26,18 @@ export default function EventDetails({ event }: EventDetailsProps) {
   const fighter1 = fighters[0] || {};
   const fighter2 = fighters[1] || {};
 
+  const getFighterSlug = (fighter?: Fighter) => {
+    if (!fighter || !fighter.FirstName || !fighter.LastName) return "inconnu";
+
+    const firstName = fighter.FirstName.toLowerCase().trim();
+    const lastName = fighter.LastName.toLowerCase().trim();
+
+    const slug1 = encodeURIComponent(`${firstName}-${lastName}`);
+    const slug2 = encodeURIComponent(`${lastName}-${firstName}`);
+
+    return [slug1, slug2];
+  };
+
   let winner = "Inconnu";
   if (fighter1.Winner) {
     winner = `${fighter1FirstName} ${fighter1LastName}`;
@@ -32,39 +45,35 @@ export default function EventDetails({ event }: EventDetailsProps) {
     winner = `${fighter2FirstName} ${fighter2LastName}`;
   }
 
-  const round = event?.ResultRound || "Inconnu";
-
   return (
     <section className="results">
       <div className="fights">
-        <Link
-          to={`/fighterdetails/${
-            fighter1FirstName.length <= fighter1LastName.length
-              ? `${fighter1FirstName.toLowerCase().trim()}-${fighter1LastName.toLowerCase().trim()}`
-              : `${fighter1LastName.toLowerCase().trim()}-${fighter1FirstName.toLowerCase().trim()}`
-          }`}
-          className="fight"
-        >
-          <h2>
-            {fighter1LastName ? fighter1FirstName : ""}{" "}
-            {fighter1LastName ? fighter1LastName : ""}
-          </h2>
-        </Link>
+        <div className="left-results">
+          <Link
+            to={`/fighterdetails/${getFighterSlug(fighter1)[0]}`}
+            className="fight"
+          >
+            <h2>
+              {fighter1FirstName} {fighter1LastName}
+            </h2>
+          </Link>
 
-        <p>VS</p>
+          <p>VS</p>
 
-        <Link
-          to={`/fighterdetails/${fighter2FirstName.toLowerCase().trim()}-${fighter2LastName.toLowerCase().trim()}`}
-          className="fight"
-        >
-          <h2>
-            {fighter2FirstName ? fighter2FirstName : ""}{" "}
-            {fighter2LastName ? fighter2LastName : ""}
-          </h2>
-        </Link>
-        <p>
-          Vainqueur: <strong>{winner}</strong> in round {round}
-        </p>
+          <Link
+            to={`/fighterdetails/${getFighterSlug(fighter2)[0]}`}
+            className="fight"
+          >
+            <h2>
+              {fighter2FirstName} {fighter2LastName}
+            </h2>
+          </Link>
+        </div>
+        <div>
+          <p>
+            Winner: <strong>{winner}</strong>
+          </p>
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import EventDetails from "../components/EventDetails";
+import "../styles/eventdetails.css";
 
 interface Fighter {
   FirstName: string;
@@ -19,7 +20,7 @@ export default function Event() {
   return (
     <>
       <h2>{event[0]?.Name}</h2>
-      <div>
+      <div className="all-results">
         {event.map((event) => (
           <EventDetails key={event.id} event={event} />
         ))}

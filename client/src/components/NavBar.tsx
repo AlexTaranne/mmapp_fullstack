@@ -1,6 +1,7 @@
+import axios from "axios";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../services/AuthContext";
 import "../styles/navbar.css";
 
@@ -14,9 +15,19 @@ export default function NavBar() {
     setIsMenuOpen(false);
   };
   const { role, setRole } = useAuth();
+  const API = import.meta.env.VITE_API_URL;
 
-  const disconnet = () => {
-    setRole("anonymous");
+  const navigate = useNavigate();
+  const disconnect = () => {
+    axios
+      .get(`${API}/api/logout`, { withCredentials: true })
+      .then(() => {
+        setRole("anonymous");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const links = [
@@ -32,7 +43,7 @@ export default function NavBar() {
     },
     {
       name: "Rankings",
-      path: "/ranking",
+      path: "/rankings",
       role: ["anonymous", "utilisateur", "administrateur"],
     },
     {
@@ -41,7 +52,7 @@ export default function NavBar() {
       role: ["anonymous", "utilisateur", "administrateur"],
     },
     {
-      name: "Se connecter",
+      name: "Login",
       path: "/auth",
       role: ["anonymous"],
     },
@@ -61,9 +72,8 @@ export default function NavBar() {
     <nav className="navbar">
       <div className="title">
         <Link to="/" onClick={closeMenu}>
-          <img src="/belt.png" alt="" />
+          <h1 className="navbar-logo">MMAPP</h1>
         </Link>
-        <h1 className="navbar-logo">MMAPP</h1>
       </div>
       <section>
         <div className="menu-icon" onClick={toggleMenu} onKeyDown={toggleMenu}>
@@ -82,7 +92,7 @@ export default function NavBar() {
             ))}
           {role !== "anonymous" ? (
             <Link to="/">
-              <li onClick={disconnet} onKeyDown={disconnet}>
+              <li onClick={disconnect} onKeyDown={disconnect}>
                 Disconnect
               </li>
             </Link>

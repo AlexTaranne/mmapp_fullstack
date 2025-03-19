@@ -2,11 +2,10 @@
   margin: 0;
   box-sizing: border-box;
   font-family: var(--primary-font);
-  color: var(--primary-color);
 }
 
 :root {
-  --primary-color: #a48134;
+  --primary-color: #ffffff;
   --secondary-color: #1e1e1e;
   --primary-font: "Quicksand", sans-serif;
   --secondary-font: "Audiowide", sans-serif;
@@ -14,5 +13,5 @@
 }
 
 body {
-  background-color: red;
+  background-color: #fdfff7;
 }

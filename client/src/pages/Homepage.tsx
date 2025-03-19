@@ -30,8 +30,8 @@ export default function Homepage() {
     rankings: NewsTypes[];
   };
 
-  const events = Array.isArray(data) ? data.slice(9).slice(0, -4) : [];
-  const someNews = Array.isArray(news) ? news.slice(0, -4) : [];
+  const events = Array.isArray(data) ? data.slice(9).slice(0, -2) : [];
+  const someNews = Array.isArray(news) ? news.slice(0, -3) : [];
   const rank = rankings.length > 0 ? rankings[0] : null;
   const rankPound = rank ? rank.fighters : [];
   const uniqueNews = someNews.filter(
@@ -39,8 +39,12 @@ export default function Homepage() {
       index === self.findIndex((n) => n.title === newsItem.title),
   );
 
+  const rankwomen = rankings.length > 0 ? rankings[9] : null;
+  const rankPoundWomen = rankwomen ? rankwomen.fighters : [];
+
   return (
     <>
+      <header className="header-img">Welcome on MMAPP</header>
       <section className="homepage-components">
         <div className="news-div">
           <h2>News</h2>
@@ -65,6 +69,23 @@ export default function Homepage() {
       )}
       <section className="homepage-rank">
         {rankPound.map((rank) => (
+          <div key={rank.id} className="rank-fighter">
+            <Link to={`/fighterdetails/${rank.id}`} className="fight">
+              <h4>{rank.name}</h4>
+            </Link>
+            <img
+              src={`https://www.octagon-api.com/fighters/${rank.id}.webp`}
+              alt="pics of champions"
+              key={rank.id}
+            />
+          </div>
+        ))}
+      </section>
+      {rankwomen?.categoryName && (
+        <h2 className="rank-title-women">{rankwomen.categoryName}</h2>
+      )}
+      <section className="homepage-rank">
+        {rankPoundWomen.map((rank) => (
           <div key={rank.id} className="rank-fighter">
             <Link to={`/fighterdetails/${rank.id}`} className="fight">
               <h4>{rank.name}</h4>

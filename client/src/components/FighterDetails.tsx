@@ -16,6 +16,8 @@ interface Fighter {
   imgUrl: string;
   placeOfBirth: string;
   trainsAt: string;
+  category: string;
+  age: number;
 }
 
 export default function FighterDetails() {
@@ -24,15 +26,21 @@ export default function FighterDetails() {
 
   return (
     <div className="fighter-details">
-      <h1>
-        {fighter.firstName} {fighter.name || fighter.lastName}
-      </h1>
-      <p> {fighter.nickname && `"${fighter.nickname}"`}</p>
-      <img src={fighter.photo || fighter.imgUrl} alt="" />
-      <p>{fighter.placeOfBirth}</p>
-      <p>Gym: {fighter.trainsAt}</p>
-      <p>Wins: {fighter.wins}</p>
-      <p>Losses: {fighter.losses}</p>
+      <div className="details-left">
+        <h1>
+          {fighter.firstName} {fighter.name || fighter.lastName}
+        </h1>
+        <p>{fighter.nickname && `"${fighter.nickname}"`}</p>
+        <img src={fighter.photo || fighter.imgUrl} alt="Fighter" />
+      </div>
+      <div className="details-right">
+        <p>Division: {fighter.category}</p>
+        <p>Born in: {fighter.placeOfBirth}</p>
+        <p>Age: {fighter.age}</p>
+        <p>Gym: {fighter.trainsAt}</p>
+        <p>Wins: {fighter.wins}</p>
+        <p>Losses: {fighter.losses}</p>
+      </div>
     </div>
   );
 }

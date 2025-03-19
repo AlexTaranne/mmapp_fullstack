@@ -67,4 +67,51 @@ const login: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { hashPassword, login };
+const verify: RequestHandler = async (req, res, next) => {
+  if (!process.env.APP_SECRET) {
+    throw new Error("Vous n'avez pas configuré votre APP_SECRET dans le .env");
+  }
+  try {
+    const { auth } = req.cookies;
+    if (!auth) {
+      res.sendStatus(403);
+    }
+
+    const resultPayLoad = jwt.verify(auth, process.env.APP_SECRET);
+    if (typeof resultPayLoad !== "object") {
+      throw new Error("Token invalide");
+    }
+
+    req.user = {
+      id: resultPayLoad.id,
+      email: resultPayLoad.email,
+      role: resultPayLoad.role,
+    };
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+const checkIfAdmin: RequestHandler = async (req, res, next) => {
+  try {
+    if (req.user.role === "administrateur") {
+      next();
+    } else {
+      res.sendStatus(403);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+const logout: RequestHandler = async (req, res, next) => {
+  try {
+    res.clearCookie("auth").send("Disconnected");
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default { hashPassword, login, verify, checkIfAdmin, logout };

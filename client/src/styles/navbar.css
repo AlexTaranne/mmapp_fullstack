@@ -3,8 +3,9 @@
   justify-content: flex-starts;
   align-items: center;
   padding: 10px 20px;
-  border-bottom: 1px solid #a48134;
+
   color: var(--primary-color);
+  background-color: #a40606;
   section {
     display: flex;
   }
@@ -18,6 +19,10 @@
   ul {
     display: flex;
     gap: 2rem;
+  }
+  a {
+    text-decoration: none;
+    color: var(--primary-color);
   }
 }
 
@@ -52,7 +57,7 @@
     position: absolute;
     top: 60px;
     left: 0;
-    background-color: #1e1e1e;
+    background-color: #a40606;
     padding: 20px;
     z-index: 1;
   }
@@ -62,7 +67,7 @@
   }
   .navbar {
     justify-content: space-between;
-    color: black;
+    color: var(--primary-color);
     ul {
       display: none;
       margin: 0;
