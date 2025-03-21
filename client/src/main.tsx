@@ -21,8 +21,10 @@ import Odds from "./pages/Odds";
 import Rankings from "./pages/Rankings";
 import RankingDetails from "./pages/RankingsDetails";
 import Schedule from "./pages/Schedule";
+import Videos from "./pages/Videos";
 import {
   getAuthorization,
+  getAuthorizationForUser,
   getEvent,
   getFighterByName,
   getFightersBdd,
@@ -113,6 +115,7 @@ const router = createBrowserRouter([
         path: "/odds",
         element: <Odds />,
         loader: getOdds,
+        errorElement: <Forbidden />,
       },
       {
         path: "/rankings",
@@ -123,6 +126,12 @@ const router = createBrowserRouter([
         path: "/rankings/:divisionid",
         element: <RankingDetails />,
         loader: ({ params }) => getRankingsById(String(params.divisionid)),
+      },
+      {
+        path: "/videos",
+        element: <Videos />,
+        loader: getAuthorizationForUser,
+        errorElement: <Forbidden />,
       },
     ],
   }, // Try adding a new route! For example, "/about" with an About component

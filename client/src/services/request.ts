@@ -144,10 +144,22 @@ const getAuthorization = () => {
     });
 };
 
+const getAuthorizationForUser = () => {
+  return axios
+    .get("http://localhost:3310/api/checkAdminOrUser", {
+      withCredentials: true,
+    })
+    .then((response) => response)
+    .catch((error) => {
+      throw new Error(error);
+    });
+};
+
 export {
   createUser,
   editFighter,
   getAuthorization,
+  getAuthorizationForUser,
   getSchedule,
   getEvent,
   getNews,

@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../services/request";
+import "../styles/login.css";
 
 interface UserData {
   id: number;
@@ -41,26 +42,16 @@ export default function SignupForm() {
     }
   };
 
-  const [showPassword, setShowPassword] = useState(false);
-  const togglePassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const [confirmPassword, setConfirmPassword] = useState(false);
-  const toggleConfirmPassword = () => {
-    setConfirmPassword(!confirmPassword);
-  };
-
   const [checked, setChecked] = useState(false);
   const toggleCheck = () => {
     setChecked(!checked);
   };
 
   return (
-    <>
+    <div className="login">
       <form onSubmit={handleSubmit}>
-        <h1>Créer ton compte</h1>
-        <h3>Tous les champs sont obligatoires</h3>
+        <h1>Create your account</h1>
+        <h3>All fiels are required</h3>
 
         <label htmlFor="email">
           Email<p>*</p>
@@ -71,7 +62,7 @@ export default function SignupForm() {
           name="email"
           value={user.email}
           onChange={handleChangeForm}
-          placeholder="Votre adresse email"
+          placeholder="Your email"
         />
 
         <label htmlFor="lastName">
@@ -98,37 +89,31 @@ export default function SignupForm() {
         />
         <div className="password-input">
           <label htmlFor="password">
-            Mot de passe<p>*</p>
+            Password<p>*</p>
           </label>
           <input
-            type={showPassword ? "text" : "password"}
+            type="password"
             id="password"
             name="password"
             aria-invalid="false"
             aria-describedby="password-error-password"
             value={user.password}
             onChange={handleChangeForm}
-            placeholder="Votre mot de passe"
+            placeholder="Your password"
           />
-          <button type="button" onClick={togglePassword}>
-            aa
-          </button>
         </div>
         <div className="password-input">
           <label htmlFor="confirmPassword">
-            Confirmez votre mot de passe<p>*</p>
+            Confirm your password<p>*</p>
           </label>
           <input
-            type={confirmPassword ? "text" : "password"}
+            type="password"
             id="confirmPassword"
             name="confirmPassword"
             value={user.confirmPassword}
             onChange={handleChangeForm}
-            placeholder="Confirmez votre mot de passe"
+            placeholder="Confirm your password"
           />
-          <button type="button" onClick={toggleConfirmPassword}>
-            aa
-          </button>
         </div>
         <label htmlFor="checkbox" className="checkbox">
           <input
@@ -137,14 +122,14 @@ export default function SignupForm() {
             checked={checked}
             onChange={toggleCheck}
           />
-          <p>En cochant cette case, vous acceptez les CGU.</p>
+          <p>Accept all rights reserved</p>
         </label>
         <div>
-          <button type="submit" className="submit" disabled={!checked}>
-            Créer un compte
+          <button type="submit" className="input-button" disabled={!checked}>
+            Create account
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }

@@ -34,12 +34,24 @@ export default function FighterDetails() {
         <img src={fighter.photo || fighter.imgUrl} alt="Fighter" />
       </div>
       <div className="details-right">
-        <p>Division: {fighter.category}</p>
-        <p>Born in: {fighter.placeOfBirth}</p>
-        <p>Age: {fighter.age}</p>
-        <p>Gym: {fighter.trainsAt}</p>
-        <p>Wins: {fighter.wins}</p>
-        <p>Losses: {fighter.losses}</p>
+        <p>
+          <strong>Division:</strong> {fighter.category}
+        </p>
+        <p>
+          <strong>Born in:</strong> {fighter.placeOfBirth}
+        </p>
+        <p>
+          <strong>Age:</strong> {fighter.age}
+        </p>
+        <p>
+          <strong>Gym:</strong> {fighter.trainsAt}
+        </p>
+        <p>
+          <strong>Wins:</strong> {fighter.wins}
+        </p>
+        <p>
+          <strong>Losses:</strong> {fighter.losses}
+        </p>
       </div>
     </div>
   );

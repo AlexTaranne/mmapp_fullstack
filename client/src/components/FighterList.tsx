@@ -15,9 +15,12 @@ export default function FighterList({ fighter }: FighterListProps) {
     <Link
       to={`/fighterdetails/${fighter.firstName.toLowerCase().trim()}-${fighter.lastName.toLowerCase().trim()}`}
     >
-      <p>
-        {fighter.lastName} {fighter.firstName}
-      </p>
+      <div className="list">
+        <h4>
+          {fighter.lastName} {fighter.firstName}
+        </h4>
+        <p>{fighter.category_name}</p>
+      </div>
     </Link>
   );
 }

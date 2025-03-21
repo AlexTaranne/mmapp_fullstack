@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../services/AuthContext";
+import "../styles/login.css";
 
 export default function Auth() {
   const [credentials, setCredentials] = useState({
@@ -16,7 +17,7 @@ export default function Auth() {
     });
   };
   const navigate = useNavigate();
-  const { setRole } = useAuth();
+  const { setRole, setFirstName } = useAuth();
 
   const sendCredentials = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,20 +27,20 @@ export default function Auth() {
       })
       .then((response) => {
         setRole(response.data.role);
-        console.info(response);
+        setFirstName(response.data.firstName);
+
         if (response.data.role === "administrateur") {
           setTimeout(() => {
             navigate("/dashboard");
-          }, 3000);
+          }, 2000);
         } else {
           navigate("/");
         }
       })
       .catch((error) => console.error(error));
   };
-
   return (
-    <>
+    <div className="login">
       <form onSubmit={sendCredentials}>
         <p>Email</p>
         <input
@@ -55,12 +56,14 @@ export default function Auth() {
           onChange={handleChangeCredentials}
           value={credentials.password}
         />
-        <input type="submit" />
+        <input type="submit" className="input-button" />
       </form>
       <div>
-        <h3>Pas encore inscrit?</h3>
-        <Link to="/signup">Inscrivez-vous</Link>
+        <h3>Not yet registered?</h3>
+        <Link to="/signup" className="signlink">
+          <u>Sign up</u>
+        </Link>
       </div>
-    </>
+    </div>
   );
 }

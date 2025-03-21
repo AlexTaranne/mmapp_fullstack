@@ -37,6 +37,7 @@ CREATE TABLE user (
   email varchar(255) not null unique,
   hashed_password VARCHAR(255) not null,
    role VARCHAR(50) NOT NULL DEFAULT 'utilisateur'
+   
 );
 
 INSERT into user (firstName, lastName, email, hashed_password, role) values 
@@ -227,7 +228,12 @@ VALUES
   ("Nickal","Bo" , "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-11/NICKAL_BO_L_11-16.png?itok=Ny0jQ60x", 6, 7, 0, "Dagestani Killer"),
   ("Stephens","Jeremy" , "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2021-04/68227%252Fprofile-galery%252Ffullbodyleft-picture%252FSTEPHENS_JEREMY_L_04-17.png?itok=r9oqGjwu", 4, 28, 19, "Lil' Heaten"),
   ("Jones", "Mason", "Wales", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2022-07/JONES_MASON_L_07-23.png?itok=OwyGfGD6", 4, 11, 2, "The Dragon"),
-  ("Nelson","Gunnar" , 'Iceland', "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2023-03/NELSON_GUNNAR_L_03-18.png?itok=_usckJU4", 6, 19, 5, "Gunni");
+  ("Nelson","Gunnar" , 'Iceland', "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2023-03/NELSON_GUNNAR_L_03-18.png?itok=_usckJU4", 6, 19, 5, "Gunni"),
+  ("Holland", "Kevin", "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/4/HOLLAND_KEVIN_L_01-18.png?itok=_og7g7uk", 5, 26, 13, "TrailBlazer"),
+  ("McCann", "Molly", "England", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-07/MCCANN_MOLLY_L_07-27.png?itok=40zTRfRD", 1, 14, 7, "Meatball"),
+  ("Thainara", "Alexia", "Brazil", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/THAINARA_ALEXIA_L_09-24.png?itok=QGxIj10C", 1, 11, 1, "Burguesinha"),
+  ("Torres", "Manuel", "Mexico", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/TORRES_MANUEL_L_09-14.png?itok=-rw7Rdpw", 4, 15, 3, "El Loco"),
+  ("Pyfer", "Joe", "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-06/PYFER_JOE_L_06-29.png?itok=ydMfkko6", 7, 13, 3, "Bodybagz");
   
 
 

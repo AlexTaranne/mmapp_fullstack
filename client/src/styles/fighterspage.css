@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   margin: 1rem;
+  padding: 1rem;
   h3 {
     text-align: center;
     margin: 1rem;
@@ -23,8 +24,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 4px;
+  width: 70%;
+  background-color: rgba(128, 128, 128, 0.216);
   a {
     color: var(--secondary-color);
+  }
+}
+
+.list {
+  display: flex;
+  width: 40rem;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .list {
+    width: 18rem;
+  }
+  .list-fighters {
+    min-width: 99%;
+    margin-top: 2rem;
+  }
+  .sort-options {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }

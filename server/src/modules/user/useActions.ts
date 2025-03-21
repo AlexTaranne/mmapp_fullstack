@@ -1,3 +1,5 @@
+import axios from "axios";
+import dotenv from "dotenv";
 import type { RequestHandler } from "express";
 import userRepository from "./useRepository";
 

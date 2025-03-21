@@ -1,0 +1,23 @@
+.rank-all {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  margin: 1rem;
+  justify-content: center;
+  div {
+    display: flex;
+    flex-direction: column;
+    height: 33rem;
+    max-width: 23rem;
+    background-color: rgba(128, 128, 128, 0.216);
+    padding: 1.5rem;
+    border-radius: 4px;
+  }
+  img {
+    height: 30rem;
+  }
+}
+.title-cat {
+  text-align: center;
+  margin: 1.5rem;
+}

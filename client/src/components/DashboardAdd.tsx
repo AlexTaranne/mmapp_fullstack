@@ -47,15 +47,19 @@ export default function DashboardAdd() {
   const sendForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3310/api/fighter/", {
-        lastName,
-        firstName,
-        nationality,
-        photo,
-        wins,
-        losses,
-        nickname,
-      })
+      .post(
+        "http://localhost:3310/api/fighter/",
+        {
+          lastName,
+          firstName,
+          nationality,
+          photo,
+          wins,
+          losses,
+          nickname,
+        },
+        { withCredentials: true },
+      )
       .then((response) => {
         console.info("Fighter ajouté :", response.data);
         fetchFighters();
@@ -65,7 +69,7 @@ export default function DashboardAdd() {
 
   const deleteFighter = (id: number) => {
     return axios
-      .delete(`${API}/api/fighter/${id}`)
+      .delete(`${API}/api/fighter/${id}`, { withCredentials: true })
       .then(() => {
         navigate(0);
       })
@@ -158,29 +162,23 @@ export default function DashboardAdd() {
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
         />
-        <input type="submit" value="Ajouter" />
+        <input type="submit" value="Ajouter" className="input-button" />
       </form>
 
       {fighters ? (
         fighters.map((fighter) => (
           <div className="card-fighter" key={fighter.id}>
-            {fighter.photo && (
-              <img
-                src={fighter.photo}
-                alt={`${fighter.firstName} ${fighter.lastName}`}
-              />
-            )}
             <h3>
               {fighter.lastName} {fighter.firstName}
             </h3>
-            <p>{fighter.nationality}</p>
-            <p>{fighter.category_name}</p>
-            <button type="button" onClick={() => deleteFighter(fighter.id)}>
-              <img src="/garbage.png" alt="" />
-            </button>
-            <button type="button" onClick={() => openModal(fighter)}>
-              <img src="/edit.png" alt="" />
-            </button>
+            <div>
+              <button type="button" onClick={() => deleteFighter(fighter.id)}>
+                <img src="/garbage.png" alt="" />
+              </button>
+              <button type="button" onClick={() => openModal(fighter)}>
+                <img src="/edit.png" alt="" />
+              </button>
+            </div>
           </div>
         ))
       ) : (
@@ -276,7 +274,7 @@ export default function DashboardAdd() {
                 value={updatedFighter.nickname}
                 onChange={handleChangeFighterForm}
               />
-              <button type="submit">Modifier</button>
+              <button type="submit">Send</button>
             </form>
           )}
         </div>

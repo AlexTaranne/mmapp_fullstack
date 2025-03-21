@@ -106,6 +106,18 @@ const checkIfAdmin: RequestHandler = async (req, res, next) => {
   }
 };
 
+const checkIfAdminOrUser: RequestHandler = async (req, res, next) => {
+  try {
+    if (req.user.role === "administrateur" || req.user.role === "utilisateur") {
+      next();
+    } else {
+      res.sendStatus(403);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 const logout: RequestHandler = async (req, res, next) => {
   try {
     res.clearCookie("auth").send("Disconnected");
@@ -114,4 +126,11 @@ const logout: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { hashPassword, login, verify, checkIfAdmin, logout };
+export default {
+  hashPassword,
+  login,
+  verify,
+  checkIfAdmin,
+  logout,
+  checkIfAdminOrUser,
+};

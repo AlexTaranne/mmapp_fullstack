@@ -1,19 +1,15 @@
 import "../styles/schedule.css";
+
 interface EventProps {
   Name: string;
   DateTime: string;
 }
-interface EventTypes {
-  events: EventProps;
-}
 
-export default function Scheduledetails({ events }: EventTypes) {
+export default function Scheduledetails({ events }: { events: EventProps }) {
   return (
-    <>
-      <div className="event">
-        <div>{events.Name}</div>
-        <p>{events.DateTime}</p>
-      </div>
-    </>
+    <div className="event">
+      <h4>{events.Name}</h4>
+      <p>{events.DateTime}</p>
+    </div>
   );
 }

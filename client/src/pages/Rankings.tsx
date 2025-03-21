@@ -1,4 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
+import "../styles/rankings.css";
 
 interface Champion {
   id: string;
@@ -15,7 +16,7 @@ export default function Rankings() {
   const rankings = useLoaderData() as Category[];
 
   return (
-    <div>
+    <div className="all-ranks">
       {rankings.map((category) => (
         <Link to={`/rankings/${category.id}`} key={category.categoryName}>
           <div className="rankingscards">

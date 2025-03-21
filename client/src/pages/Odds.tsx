@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import "../styles/odds.css";
 
 interface Outcome {
   name: string;
@@ -48,57 +49,57 @@ export default function Odds() {
   };
 
   return (
-    <>
-      {odds.map((odd) => {
-        const firstBookmaker = odd.bookmakers[0];
-        const firstMarket = firstBookmaker?.markets[0];
-        const outcomes = firstMarket?.outcomes || [];
+    <section className="all-odds">
+      <div className="odds">
+        <h2 className="odds-title">Odds</h2>
+        {odds.map((odd) => {
+          const firstBookmaker = odd.bookmakers[0];
+          const firstMarket = firstBookmaker?.markets[0];
+          const outcomes = firstMarket?.outcomes || [];
 
-        if (outcomes.length < 2) {
+          if (outcomes.length < 2) {
+            return null;
+          }
+
           return (
             <div key={odd.id}>
               <h2>
                 {odd.home_team} vs {odd.away_team}
               </h2>
-              <p>No odds for the moment</p>
+              {outcomes.map((outcome) => (
+                <label key={outcome.name}>
+                  <input
+                    type="checkbox"
+                    onChange={() => handleSelectOdd(outcome)}
+                    checked={selectedOdds.some(
+                      (odd) => odd.name === outcome.name,
+                    )}
+                  />{" "}
+                  {outcome.name} - {outcome.price}
+                </label>
+              ))}
             </div>
           );
-        }
-
-        return (
-          <div key={odd.id}>
-            <h2>
-              {odd.home_team} vs {odd.away_team}
-            </h2>
-            {outcomes.map((outcome) => (
-              <label key={outcome.name}>
-                <input
-                  type="checkbox"
-                  onChange={() => handleSelectOdd(outcome)}
-                  checked={selectedOdds.some(
-                    (odd) => odd.name === outcome.name,
-                  )}
-                />{" "}
-                {outcome.name} - {outcome.price}
-              </label>
-            ))}
-          </div>
-        );
-      })}
+        })}
+      </div>
 
       {selectedOdds.length > 0 && (
-        <div>
-          <h3>Your odds :</h3>
-          <ul>
-            {selectedOdds.map((odd) => (
-              <li key={odd.name}>
-                {odd.name}: {odd.price}
-              </li>
-            ))}
-          </ul>
-          <p>Total Odds : {totalOdds.toFixed(2)}</p>
+        <div className="odd">
+          <div>
+            <h3>Your odds :</h3>
+            <ul>
+              {selectedOdds.map((odd) => (
+                <li key={odd.name}>
+                  {odd.name}: {odd.price}
+                </li>
+              ))}
+            </ul>
+            <p>
+              <strong>Total Odds : {totalOdds.toFixed(2)}</strong>
+            </p>
+          </div>
         </div>
       )}
-    </>
+    </section>
   );
 }

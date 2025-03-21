@@ -14,7 +14,10 @@ export default function NavBar() {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
-  const { role, setRole } = useAuth();
+  const { role, setRole, firstName } = useAuth();
+
+  console.info(firstName);
+
   const API = import.meta.env.VITE_API_URL;
 
   const navigate = useNavigate();
@@ -66,6 +69,11 @@ export default function NavBar() {
       path: "/odds",
       role: ["utilisateur", "administrateur"],
     },
+    {
+      name: "Videos",
+      path: "/videos",
+      role: ["utilisateur", "administrateur"],
+    },
   ];
 
   return (
@@ -95,6 +103,11 @@ export default function NavBar() {
               <li onClick={disconnect} onKeyDown={disconnect}>
                 Disconnect
               </li>
+            </Link>
+          ) : null}
+          {role === "utilisateur" || role === "administrateur" ? (
+            <Link to="/">
+              <li>{firstName}</li>
             </Link>
           ) : null}
         </ul>
