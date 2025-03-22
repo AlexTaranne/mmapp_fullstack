@@ -18,6 +18,7 @@ import Forbidden from "./pages/Forbidden";
 import Homepage from "./pages/Homepage";
 import News from "./pages/News";
 import Odds from "./pages/Odds";
+import Profile from "./pages/Profile";
 import Rankings from "./pages/Rankings";
 import RankingDetails from "./pages/RankingsDetails";
 import Schedule from "./pages/Schedule";
@@ -130,6 +131,12 @@ const router = createBrowserRouter([
       {
         path: "/videos",
         element: <Videos />,
+        loader: getAuthorizationForUser,
+        errorElement: <Forbidden />,
+      },
+      {
+        path: "/profil",
+        element: <Profile />,
         loader: getAuthorizationForUser,
         errorElement: <Forbidden />,
       },

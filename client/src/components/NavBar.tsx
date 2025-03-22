@@ -54,11 +54,7 @@ export default function NavBar() {
       path: "/news",
       role: ["anonymous", "utilisateur", "administrateur"],
     },
-    {
-      name: "Login",
-      path: "/auth",
-      role: ["anonymous"],
-    },
+
     {
       name: "Dashboard",
       path: "/dashboard",
@@ -77,7 +73,7 @@ export default function NavBar() {
   ];
 
   return (
-    <nav className="navbar">
+    <nav>
       <div className="title">
         <Link to="/" onClick={closeMenu}>
           <h1 className="navbar-logo">MMAPP</h1>
@@ -98,20 +94,42 @@ export default function NavBar() {
                 </Link>
               </li>
             ))}
-          {role !== "anonymous" ? (
-            <Link to="/">
-              <li onClick={disconnect} onKeyDown={disconnect}>
+          {role === "anonymous" ? (
+            <Link to="/auth" onClick={closeMenu} className="login-mobile">
+              Login
+            </Link>
+          ) : (
+            <Link to="/" className="disconnect-mobile">
+              <button type="button" onClick={disconnect} onKeyDown={disconnect}>
                 Disconnect
-              </li>
+              </button>
             </Link>
-          ) : null}
-          {role === "utilisateur" || role === "administrateur" ? (
-            <Link to="/">
-              <li>{firstName}</li>
+          )}
+          <li>
+            <Link to="/profil" className="firstname-mobile">
+              {firstName}
             </Link>
-          ) : null}
+          </li>
         </ul>
       </section>
+      <div className="auth-profil">
+        {role === "utilisateur" || role === "administrateur" ? (
+          <Link to="/profil" className="firstname-desktop">
+            {firstName}
+          </Link>
+        ) : null}
+        {role === "anonymous" ? (
+          <Link to="/auth" onClick={closeMenu} className="login-desktop">
+            Login
+          </Link>
+        ) : (
+          <Link to="/" className="disconnect-desktop">
+            <button type="button" onClick={disconnect} onKeyDown={disconnect}>
+              Disconnect
+            </button>
+          </Link>
+        )}
+      </div>
     </nav>
   );
 }

@@ -31,7 +31,7 @@ export default function Homepage() {
   };
 
   const events = Array.isArray(data) ? data.slice(9).slice(0, -2) : [];
-  const someNews = Array.isArray(news) ? news.slice(0, -4) : [];
+  const someNews = Array.isArray(news) ? news.slice(0, -2) : [];
   const rank = rankings.length > 0 ? rankings[0] : null;
   const rankPound = rank ? rank.fighters : [];
   const uniqueNews = someNews.filter(
@@ -46,7 +46,7 @@ export default function Homepage() {
     <>
       <header className="header-img">
         <h2 className="header-title">Welcome in the Octagon</h2>
-        <Link to="/signup" className="">
+        <Link to="/signup" className="link-join">
           Join Us
         </Link>
       </header>

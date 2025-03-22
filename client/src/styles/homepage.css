@@ -120,13 +120,13 @@ header {
   align-items: center;
   gap: 0.5rem;
   a {
-    width: 40%;
+    width: 30%;
     border: none;
-    background-color: rgba(128, 128, 128, 0.981);
+    background-color: var(--bg-color);
     border-radius: 4px;
     text-align: center;
-    padding: 0.5rem;
-    color: white;
+    padding: 0.2rem;
+    color: rgb(0, 0, 0);
   }
 }
 
@@ -189,11 +189,11 @@ header {
     a {
       width: 10%;
       border: none;
-      background-color: rgba(128, 128, 128, 0.981);
+      background-color: var(--bg-color);
       border-radius: 4px;
       text-align: center;
       padding: 0.5rem;
-      color: white;
+      color: rgb(0, 0, 0);
     }
   }
 }
