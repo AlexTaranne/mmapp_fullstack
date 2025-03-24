@@ -61,8 +61,12 @@ export default function DashboardAdd() {
         { withCredentials: true },
       )
       .then((response) => {
-        console.info("Fighter ajouté :", response.data);
-        fetchFighters();
+        if (response.status === 201) {
+          console.info("Fighter ajouté :", response.data);
+          fetchFighters();
+        } else {
+          alert(response.data.error);
+        }
       })
       .catch((error) => console.error("Erreur lors de l'ajout :", error));
   };

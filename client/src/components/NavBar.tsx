@@ -105,11 +105,13 @@ export default function NavBar() {
               </button>
             </Link>
           )}
-          <li>
-            <Link to="/profil" className="firstname-mobile">
-              {firstName}
-            </Link>
-          </li>
+          {role === "utilisateur" || role === "administrateur" ? (
+            <li>
+              <Link to="/profil" className="firstname-mobile">
+                {firstName}
+              </Link>
+            </li>
+          ) : null}
         </ul>
       </section>
       <div className="auth-profil">

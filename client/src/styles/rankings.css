@@ -5,6 +5,9 @@
   gap: 4rem;
   padding: 2rem;
   margin: 0 auto;
+  a {
+    color: black;
+  }
 }
 .rankingscards {
   height: 35rem;

@@ -18,6 +18,8 @@ interface Fighter {
   trainsAt: string;
   category: string;
   age: number;
+  category_name: string;
+  nationality: string;
 }
 
 export default function FighterDetails() {
@@ -35,10 +37,11 @@ export default function FighterDetails() {
       </div>
       <div className="details-right">
         <p>
-          <strong>Division:</strong> {fighter.category}
+          <strong>Division:</strong> {fighter.category || fighter.category_name}
         </p>
         <p>
-          <strong>Born in:</strong> {fighter.placeOfBirth}
+          <strong>Born in:</strong>{" "}
+          {fighter.placeOfBirth || fighter.nationality}
         </p>
         <p>
           <strong>Age:</strong> {fighter.age}

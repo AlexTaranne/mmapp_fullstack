@@ -15,11 +15,18 @@ router.post("/api/items", itemActions.add);
 
 /* ************************************************************************* */
 import auth from "./middleware/auth";
+import form from "./middleware/form";
 import fighterActions from "./modules/fighter/fighterActions";
 import useActions from "./modules/user/useActions";
 
 router.get("/api/fighter", fighterActions.browse);
-router.post("/api/fighter", auth.verify, auth.checkIfAdmin, fighterActions.add);
+router.post(
+  "/api/fighter",
+  auth.verify,
+  auth.checkIfAdmin,
+  form.validate,
+  fighterActions.add,
+);
 router.get("/api/fighter/:firstName-:lastName", fighterActions.read);
 router.delete("/api/fighter/:id", fighterActions.destroy);
 router.put("/api/fighter/:id", fighterActions.edit);

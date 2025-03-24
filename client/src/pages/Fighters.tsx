@@ -62,7 +62,7 @@ export default function Fighters() {
           <option value="Lightweight">Lightweight</option>
           <option value="Welterweight">Welterweight</option>
           <option value="Middleweight">Middleweight</option>
-          <option value="LightHeavyweight">Light Heavyweight</option>
+          <option value="Light Heavyweight">Light-Heavyweight</option>
           <option value="Heavyweight">Heavyweight</option>
         </select>
       </div>

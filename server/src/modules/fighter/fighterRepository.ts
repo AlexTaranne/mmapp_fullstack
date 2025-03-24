@@ -7,7 +7,7 @@ type Fighter = {
   firstName: string;
   nationality: string;
   photo: string;
-  category_id: number;
+  category_name: string;
   wins: number;
   losses: number;
   nickname: string;
@@ -25,8 +25,8 @@ class fighterRepository {
     lastName: string,
   ): Promise<Fighter | null> {
     const [rows] = await databaseClient.query<(Fighter & RowDataPacket)[]>(
-      `SELECT id, lastName, firstName, nationality, photo, category_id, wins, losses, nickname 
-       FROM fighter 
+      `SELECT id, lastName, firstName, nationality, photo, category_name, wins, losses, nickname 
+       FROM fighter_view
        WHERE firstName = ? AND lastName = ?`,
       [firstName, lastName],
     );
@@ -60,13 +60,13 @@ class fighterRepository {
 
   async update(fighter: Fighter): Promise<number> {
     const [result] = await databaseClient.query<Result>(
-      "UPDATE fighter SET lastname = ?, firstname = ?, nationality = ?, photo = ?, category_id = ?, wins = ?, losses = ?, nickname = ? WHERE id = ?",
+      "UPDATE fighter SET lastname = ?, firstname = ?, nationality = ?, photo = ?, category_name = ?, wins = ?, losses = ?, nickname = ? WHERE id = ?",
       [
         fighter.lastName,
         fighter.firstName,
         fighter.nationality,
         fighter.photo,
-        fighter.category_id,
+        fighter.category_name,
         fighter.wins,
         fighter.losses,
         fighter.nickname,

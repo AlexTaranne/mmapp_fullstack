@@ -53,7 +53,7 @@ const edit: RequestHandler = async (req, res, next) => {
       firstName: req.body.firstName,
       nationality: req.body.nationality,
       photo: req.body.photo,
-      category_id: req.body.category_id,
+      category_name: req.body.category_name,
       wins: req.body.wins,
       losses: req.body.losses,
       nickname: req.body.nickname,
