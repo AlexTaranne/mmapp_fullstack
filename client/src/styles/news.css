@@ -3,13 +3,17 @@
   flex-wrap: wrap;
   justify-content: center;
   padding: 1rem;
-  background-color: rgba(128, 128, 128, 0.216);
+  background-color: var(--bg-section);
   border-radius: 4px;
   img {
     height: 13rem;
     padding: 0.5rem;
     width: 20rem;
     border-radius: 4px;
+  }
+  a {
+    text-decoration: none;
+    color: var(--secondary-color);
   }
 }
 
@@ -18,10 +22,24 @@
   flex-direction: column;
   margin: 1rem;
   gap: 2rem;
+
   h2 {
     text-align: center;
     margin: 1rem;
     font-family: var(--secondary-font);
+    background-color: var(--nav-color);
+    border-radius: 4px;
+    color: var(--primary-color);
+  }
+}
+
+.cardnews {
+  display: flex;
+  align-items: center;
+  border-bottom: var(--secondary-color) 1px solid;
+  padding: 0.5rem;
+  img {
+    max-height: 0.9rem;
   }
 }
 
@@ -36,6 +54,14 @@
       height: 20rem;
       width: 30rem;
       border-radius: var(--radius);
+    }
+  }
+  .news-cards {
+    h2 {
+      width: 70%;
+      margin: auto auto;
+      border-radius: 4px;
+      color: var(--primary-color);
     }
   }
 }

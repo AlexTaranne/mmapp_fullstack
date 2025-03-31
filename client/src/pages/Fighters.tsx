@@ -29,7 +29,7 @@ export default function Fighters() {
 
   return (
     <div className="fighters-page">
-      <h3>Fighters List</h3>
+      <h2>Fighters List</h2>
       <div className="sort-options">
         <p className="sort">Sort alphabetically</p>
         <label>

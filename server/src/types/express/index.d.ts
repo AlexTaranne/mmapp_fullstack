@@ -13,6 +13,7 @@ declare global {
         role: string;
         id: number;
         email: string;
+        picture: string;
       };
     }
   }

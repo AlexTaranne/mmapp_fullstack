@@ -6,6 +6,7 @@ footer {
   border-top: 2px solid var(--primary-color);
   width: 80%;
   margin: 0 auto;
+  color: var(--secondary-color);
   li {
     list-style-type: none;
   }

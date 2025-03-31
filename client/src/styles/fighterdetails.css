@@ -30,7 +30,7 @@
     justify-content: space-around;
   }
   .details-right {
-    background-color: rgba(128, 128, 128, 0.216);
+    background-color: var(--bg-section);
     padding: 5rem;
     gap: 2rem;
     width: 30%;
@@ -39,7 +39,7 @@
     align-items: center;
   }
   .details-left {
-    background-color: rgba(128, 128, 128, 0.216);
+    background-color: var(--bg-section);
     width: 50%;
     border-radius: 4px;
   }

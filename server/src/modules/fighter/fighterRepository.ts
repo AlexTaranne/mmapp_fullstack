@@ -11,6 +11,7 @@ type Fighter = {
   wins: number;
   losses: number;
   nickname: string;
+  category_id: number;
 };
 class fighterRepository {
   async readAll() {
@@ -60,13 +61,13 @@ class fighterRepository {
 
   async update(fighter: Fighter): Promise<number> {
     const [result] = await databaseClient.query<Result>(
-      "UPDATE fighter SET lastname = ?, firstname = ?, nationality = ?, photo = ?, category_name = ?, wins = ?, losses = ?, nickname = ? WHERE id = ?",
+      "UPDATE fighter SET lastname = ?, firstname = ?, nationality = ?, photo = ?, category_id = ?, wins = ?, losses = ?, nickname = ? WHERE id = ?",
       [
         fighter.lastName,
         fighter.firstName,
         fighter.nationality,
         fighter.photo,
-        fighter.category_name,
+        fighter.category_id,
         fighter.wins,
         fighter.losses,
         fighter.nickname,

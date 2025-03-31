@@ -62,7 +62,6 @@ export default function DashboardAdd() {
       )
       .then((response) => {
         if (response.status === 201) {
-          console.info("Fighter ajouté :", response.data);
           fetchFighters();
         } else {
           alert(response.data.error);
@@ -100,7 +99,7 @@ export default function DashboardAdd() {
         closeModal();
       })
       .catch((error) => {
-        console.error("Erreur lors de la mise à jour du film :", error);
+        console.error("Erreur lors de la mise à jour du fighter:", error);
       });
   };
 
@@ -172,9 +171,9 @@ export default function DashboardAdd() {
       {fighters ? (
         fighters.map((fighter) => (
           <div className="card-fighter" key={fighter.id}>
-            <h3>
+            <h5>
               {fighter.lastName} {fighter.firstName}
-            </h3>
+            </h5>
             <div>
               <button type="button" onClick={() => deleteFighter(fighter.id)}>
                 <img src="/garbage.png" alt="" />

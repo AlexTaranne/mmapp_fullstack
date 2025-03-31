@@ -2,6 +2,8 @@ import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Homepagedetails from "../components/HomepageDetails";
 import News from "../components/News";
+import { useAuth } from "../services/AuthContext";
+
 import "../styles/homepage.css";
 
 interface Fighter {
@@ -30,8 +32,8 @@ export default function Homepage() {
     rankings: NewsTypes[];
   };
 
-  const events = Array.isArray(data) ? data.slice(9).slice(0, -2) : [];
-  const someNews = Array.isArray(news) ? news.slice(0, -2) : [];
+  const events = Array.isArray(data) ? data.slice(11).slice(0, -3) : [];
+  const someNews = Array.isArray(news) ? news.slice(0, -1) : [];
   const rank = rankings.length > 0 ? rankings[0] : null;
   const rankPound = rank ? rank.fighters : [];
   const uniqueNews = someNews.filter(
@@ -42,17 +44,21 @@ export default function Homepage() {
   const rankwomen = rankings.length > 0 ? rankings[9] : null;
   const rankPoundWomen = rankwomen ? rankwomen.fighters : [];
 
+  const { role } = useAuth();
+
   return (
     <>
       <header className="header-img">
-        <h2 className="header-title">Welcome in the Octagon</h2>
-        <Link to="/signup" className="link-join">
-          Join Us
-        </Link>
+        <h3 className="header-title">Welcome in the Octagon</h3>
+        {role === "anonymous" ? (
+          <Link to="/signup" className="link-join">
+            Join Us
+          </Link>
+        ) : null}
       </header>
       <section className="homepage-components">
         <div className="news-div">
-          <h2>News</h2>
+          <h2>LATEST NEWS</h2>
 
           {uniqueNews.map((news) => (
             <News key={news.article_id} news={news} />
@@ -61,7 +67,7 @@ export default function Homepage() {
         </div>
 
         <div className="eventhomepage">
-          <h2>Upcoming Events</h2>
+          <h2>UPCOMING EVENTS</h2>
           {events.map((event) => (
             <Link to={`/event/${event.EventId}`} key={event.EventId}>
               <Homepagedetails event={event} />

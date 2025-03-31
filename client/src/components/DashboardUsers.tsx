@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useLoaderData, useRevalidator } from "react-router-dom";
 
 interface UsersTypes {
   firstName: string;
@@ -9,30 +9,32 @@ interface UsersTypes {
 }
 
 export default function DashboardUsers() {
-  const [users, setUsers] = useState<UsersTypes[]>([]);
+  const { users } = useLoaderData() as { users: UsersTypes[] };
+  const { revalidate } = useRevalidator();
+  const API = import.meta.env.VITE_API_URL;
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3310/api/users", { withCredentials: true })
-      .then((response) => {
-        console.info("Données récupérées :", response.data);
-        setUsers(response.data);
-      })
-      .catch((error) =>
-        console.error("Erreur lors de la récupération :", error),
-      );
-  }, []);
+  const deleteUsers = (id: number) => {
+    return axios
+      .delete(`${API}/api/users/${id}`, { withCredentials: true })
+      .then(() => revalidate())
+      .catch((error) => console.error(error));
+  };
 
   return (
-    <>
+    <div className="user-dashboard">
       {users.map((user) => (
-        <div key={user.id}>
-          <p>
-            {user.firstName} {user.lastName}
-          </p>
-          <p>{user.role}</p>
+        <div key={user.id} className="card-user">
+          <div className="info-user">
+            <h4>
+              {user.firstName} {user.lastName}
+            </h4>
+            <p>{user.role}</p>
+          </div>
+          <button type="button" onClick={() => deleteUsers(user.id)}>
+            <img src="/garbage.png" alt="" />
+          </button>
         </div>
       ))}
-    </>
+    </div>
   );
 }

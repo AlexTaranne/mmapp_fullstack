@@ -23,6 +23,7 @@ import Rankings from "./pages/Rankings";
 import RankingDetails from "./pages/RankingsDetails";
 import Schedule from "./pages/Schedule";
 import Videos from "./pages/Videos";
+import { DarkThemeProvider } from "./services/DarkThemeContext";
 import {
   getAuthorization,
   getAuthorizationForUser,
@@ -34,6 +35,9 @@ import {
   getRankings,
   getRankingsById,
   getSchedule,
+  getUsers,
+  getUsersById,
+  getVideos,
 } from "./services/request";
 
 // Import additional components for new routes
@@ -63,7 +67,11 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />,
-        loader: getAuthorization,
+        loader: async () => ({
+          authorization: await getAuthorization(),
+          videos: await getVideos(),
+          users: await getUsers(),
+        }),
         errorElement: <Forbidden />,
       },
 
@@ -131,14 +139,20 @@ const router = createBrowserRouter([
       {
         path: "/videos",
         element: <Videos />,
-        loader: getAuthorizationForUser,
+        loader: async () => ({
+          authorization: await getAuthorizationForUser(),
+          videos: await getVideos(),
+        }),
         errorElement: <Forbidden />,
       },
       {
-        path: "/profil",
+        path: "/profil/:id",
         element: <Profile />,
-        loader: getAuthorizationForUser,
-        errorElement: <Forbidden />,
+        loader: async ({ params }) => {
+          await getAuthorizationForUser();
+          return getUsersById(Number(params.id));
+        },
+        errorElement: <Forbidden />, // Redirige si non autorisé
       },
     ],
   }, // Try adding a new route! For example, "/about" with an About component
@@ -155,9 +169,11 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <DarkThemeProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </DarkThemeProvider>
   </StrictMode>,
 );
 

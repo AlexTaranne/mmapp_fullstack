@@ -22,11 +22,11 @@ const fighterSchema = Joi.object({
     "photo.max": "This can be only an URL with minimum 10 characters",
     "photo.min": "This can be only an URL with maximum 255 characters",
   }),
-  wins: Joi.number().min(1).max(2).integer().required().messages({
+  wins: Joi.number().min(1).max(99).integer().required().messages({
     "number.max": "Wins must contain maximum 99 wins",
     "number.min": "Wins must contain minimum 1 win",
   }),
-  losses: Joi.number().min(1).max(2).integer().required().messages({
+  losses: Joi.number().min(0).max(99).integer().required().messages({
     "number.min": "Wins must contain maximum 99 losses",
     "number.max": "Wins must contain minimum 1 losse",
   }),

@@ -36,13 +36,13 @@ CREATE TABLE user (
   lastName VARCHAR (255),
   email varchar(255) not null unique,
   hashed_password VARCHAR(255) not null,
-   role VARCHAR(50) NOT NULL DEFAULT 'utilisateur'
-   
+   role VARCHAR(50) NOT NULL DEFAULT 'utilisateur',
+   picture VARCHAR(255) DEFAULT "default.png"
 );
 
 INSERT into user (firstName, lastName, email, hashed_password, role) values 
 ("Alex", "Taranne", "alex@gmail.com", "$argon2id$v=19$m=19456,t=2,p=1$PFBU/IIofJEU6xalUJqz6w$f1V+bZ7QACupP0IZAKs3c1Q57IHVbNbf+6W6grp5+4I", "administrateur"),
-("toto", "toto", "alextaranne@gmail.com","$argon2id$v=19$m=19456,t=2,p=1$PFBU/IIofJEU6xalUJqz6w$f1V+bZ7QACupP0IZAKs3c1Q57IHVbNbf+6W6grp5+4I", "utilisateur" );
+("Hutch", "Lechien", "alextaranne@gmail.com","$argon2id$v=19$m=19456,t=2,p=1$PFBU/IIofJEU6xalUJqz6w$f1V+bZ7QACupP0IZAKs3c1Q57IHVbNbf+6W6grp5+4I", "utilisateur" );
 
 INSERT INTO category (name) VALUES 
 ('Flyweight'), 
@@ -233,8 +233,36 @@ VALUES
   ("McCann", "Molly", "England", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-07/MCCANN_MOLLY_L_07-27.png?itok=40zTRfRD", 1, 14, 7, "Meatball"),
   ("Thainara", "Alexia", "Brazil", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/THAINARA_ALEXIA_L_09-24.png?itok=QGxIj10C", 1, 11, 1, "Burguesinha"),
   ("Torres", "Manuel", "Mexico", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/TORRES_MANUEL_L_09-14.png?itok=-rw7Rdpw", 4, 15, 3, "El Loco"),
-  ("Pyfer", "Joe", "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-06/PYFER_JOE_L_06-29.png?itok=ydMfkko6", 7, 13, 3, "Bodybagz");
+  ("Pyfer", "Joe", "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-06/PYFER_JOE_L_06-29.png?itok=ydMfkko6", 7, 13, 3, "Bodybagz"),
+  ("Silva", "Jean", "Brazil", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2025-02/SILVA_JEAN_L_02-22.png?itok=RqD7S2Yl", 3, 15, 2, "Lord"),
+  ("Pitbull", "Patricio", "Brazil", "https://pflmma-prod.s3.amazonaws.com/fighters/bodyshots/cf3dc49b9a3d008e8c01ff57ed681f87-1.png", 3, 36, 7, "Pitbull"),
+  ("Woodson", "Sean", "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/WOODSON_SEAN_L_12-14.png?itok=0f3jUhtm", 2, 13, 1, "The Sniper"),
+  ("Miller", "Jim", "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-11/MILLER_JIM_L_11-16.png?itok=WZY1pp-m", 4, 38, 18, ""),
+  ("Hooper", "Chase", "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/HOOPER_CHASE_L_05-11.png?itok=vIy8TiIW", 4, 15, 3, "The Dream"),
+  ("Oleksiejczuk", "Michal", "Poland", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-06/OLEKSIEJCZUK_MICHAL_L_06-01.png?itok=rby88QRO", 5, 19, 9, "Hussar"),
+  ("Gomis", "William", "France", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/GOMIS_WILLIAM_L_09-28.png?itok=y12boaMH", 3, 14, 3, "Jaguar"),
+  ("Nunes", "Istela", "Brazil", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2021-10/68133%252Fprofile-galery%252Ffullbodyleft-picture%252FNUNES_ISTELA_L_10-16.png?itok=bYtt3La0", 1, 6, 5, ""),
+  ("Duncan", "Chris", "Scotland", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2023-07/DUNCAN_CHRIS_L_07-22.png?itok=1a1RuZLS", 4, 13, 2, "The Problem"),
+  ("Talbott", "Payton", "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/4/TALBOTT_PAYTON_L_01-18.png?itok=xwSdRLoq", 2, 9, 1, ""),
+  ("Tafa", "Justin", "New Zealand", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2025-02/TAFA_JUSTIN_L_02-08.png?itok=56Ehzsh6", 8, 7, 5, "Bad Man"),
+  ("Topuria", "Aleksandre", "Georgia", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2025-02/TOPURIA_ALEKSANDRE_R_02-08.png?itok=-zdGfWk8", 3, 6, 1, "El Conquistador"),
+  ("Jousset", "Kevin", "France", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/JOUSSET_KEVIN_L_09-28.png?itok=2jUj7o-Z", 5, 10, 4, "Air");
   
 
+CREATE table fights (
+  id int unsigned primary key auto_increment not null,
+  title VARCHAR(255) not null,
+  link VARCHAR(255) NOT NULL,
+  genre VARCHAR(255) not NULL
+  );
+
+  INSERT INTO fights (title, link, genre)
+  VALUES
+  ("Jon Jones vs Alexander Gustafsson", "https://www.youtube.com/embed/y3UOguhWDek", "Fight"),
+  ("Ufc Mexico media day", "https://www.youtube.com/embed/alnaeRe850I", "Interview"),
+  ("Jon Jones vs Lyoto Machida", "https://www.youtube.com/embed/Pzi8UFEWRxI", "Fight"),
+  ("Georges Saint-Pierre vs Michael Bisping", "https://www.youtube.com/embed/JOREpJ7ANPA", "Fight"),
+  ("Chuck Liddell vs Wanderlei Silva", "https://www.youtube.com/embed/yz6E5UFWs4k", "Fight"),
+  (" UFC London: Post-Fight Press Conference", "https://www.youtube.com/embed/vbnzTkSpYjA", "Interview");
 
 

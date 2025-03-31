@@ -43,6 +43,7 @@ const login: RequestHandler = async (req, res, next) => {
         lastName: user.lastName,
         email: user.email,
         role: user.role,
+        picture: user.picture,
       };
 
       if (!process.env.APP_SECRET) {
@@ -57,9 +58,11 @@ const login: RequestHandler = async (req, res, next) => {
 
       res.cookie("auth", token);
       res.json({
+        id: user.id,
         role: user.role,
         lastName: user.lastName,
         firstName: user.firstName,
+        picture: user.picture,
       });
     }
   } catch (error) {
@@ -86,6 +89,7 @@ const verify: RequestHandler = async (req, res, next) => {
       id: resultPayLoad.id,
       email: resultPayLoad.email,
       role: resultPayLoad.role,
+      picture: resultPayLoad.picture,
     };
 
     next();

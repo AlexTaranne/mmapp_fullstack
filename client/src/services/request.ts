@@ -60,8 +60,18 @@ const getFightersBdd = () => {
     .then((response) => response.data);
 };
 
+const getVideos = () => {
+  return axios
+    .get("http://localhost:3310/api/fights", { withCredentials: true })
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
+};
+
 const formatName = (name: string) => {
-  return name.trim().toLowerCase().replace(/\s+/g, "-");
+  return name.trim().toLowerCase().replaceAll(" ", "-");
 };
 
 const getFighterByName = async (firstName: string, lastName: string) => {
@@ -133,6 +143,18 @@ const getRankingsById = (divisionId: string) => {
     .then((response) => response.data);
 };
 
+const getUsers = () => {
+  return axios
+    .get(`${API}/api/users`, { withCredentials: true })
+    .then((response) => response.data);
+};
+
+const getUsersById = (id: number) => {
+  return axios
+    .get(`http://localhost:3310/api/users/${id}`, { withCredentials: true })
+    .then((response) => response.data);
+};
+
 const getAuthorization = () => {
   return axios
     .get("http://localhost:3310/api/checkAdmin", {
@@ -165,7 +187,10 @@ export {
   getNews,
   getRankings,
   getRankingsById,
+  getVideos,
   getFightersBdd,
   getFighterByName,
   getOdds,
+  getUsersById,
+  getUsers,
 };

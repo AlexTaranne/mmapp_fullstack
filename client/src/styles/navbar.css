@@ -3,8 +3,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  color: white;
-  background-color: #a40606;
+  color: var(--primary-color);
+  background-color: var(--nav-color);
   section {
     display: flex;
   }
@@ -18,21 +18,27 @@ nav {
   ul {
     display: flex;
     gap: 2rem;
+    margin: 0 auto;
+    width: fit-content;
   }
   a {
     text-decoration: none;
-    color: white;
+    color: var(--primary-color);
   }
 }
 
 .nav-links {
   display: flex;
   list-style-type: none;
+  align-items: center;
+
+  a:hover {
+    border-bottom: 2px solid var(--primary-color);
+  }
 }
 
 .nav-links a {
   text-decoration: none;
-  font-size: 18px;
 }
 
 .menu-icon {
@@ -51,7 +57,7 @@ nav {
   background-color: var(--bg-color);
   width: 4rem;
   padding: 0.3rem;
-  color: black;
+  color: var(--secondary-color);
   font-weight: bold;
   border-radius: 4px;
   text-align: center;
@@ -78,6 +84,16 @@ nav {
     font-weight: bold;
   }
 }
+.firstname-desktop {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+}
+.profil-picture {
+  width: 3rem;
+  border-radius: 10px;
+}
 
 @media screen and (max-width: 768px) {
   .nav-links {
@@ -87,7 +103,7 @@ nav {
     position: absolute;
     top: 60px;
     left: 0;
-    background-color: #a40606;
+    background-color: var(--nav-color);
     padding: 20px;
     z-index: 1;
   }
@@ -123,7 +139,7 @@ nav {
     background-color: var(--bg-color);
     padding: 0.5rem;
     border-radius: 4px;
-    color: black;
+    color: var(--secondary-color);
   }
   .nav-links > a:last-child {
     font-weight: bold;

@@ -14,9 +14,8 @@ export default function NavBar() {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
-  const { role, setRole, firstName } = useAuth();
-
-  console.info(firstName);
+  const { role, setRole, firstName, lastName, picture, id } = useAuth();
+  console.info(lastName);
 
   const API = import.meta.env.VITE_API_URL;
 
@@ -26,6 +25,7 @@ export default function NavBar() {
       .get(`${API}/api/logout`, { withCredentials: true })
       .then(() => {
         setRole("anonymous");
+        closeMenu();
         navigate("/");
       })
       .catch((error) => {
@@ -61,7 +61,7 @@ export default function NavBar() {
       role: ["administrateur"],
     },
     {
-      name: "Odds",
+      name: "Bets",
       path: "/odds",
       role: ["utilisateur", "administrateur"],
     },
@@ -107,8 +107,17 @@ export default function NavBar() {
           )}
           {role === "utilisateur" || role === "administrateur" ? (
             <li>
-              <Link to="/profil" className="firstname-mobile">
-                {firstName}
+              <Link
+                to={`/profil/${id}`}
+                className="firstname-mobile"
+                onClick={closeMenu}
+              >
+                <img
+                  src={`http://localhost:3310/uploads/${picture}`}
+                  alt=""
+                  className="profil-picture"
+                />
+                <p>{firstName}</p>
               </Link>
             </li>
           ) : null}
@@ -116,8 +125,18 @@ export default function NavBar() {
       </section>
       <div className="auth-profil">
         {role === "utilisateur" || role === "administrateur" ? (
-          <Link to="/profil" className="firstname-desktop">
-            {firstName}
+          <Link
+            to={`/profil/${id}`}
+            className="firstname-desktop"
+            onClick={closeMenu}
+          >
+            <img
+              src={`http://localhost:3310/uploads/${picture}`}
+              alt=""
+              className="profil-picture"
+            />
+
+            <p>{firstName}</p>
           </Link>
         ) : null}
         {role === "anonymous" ? (

@@ -1,5 +1,5 @@
 .event {
-  background-color: rgba(128, 128, 128, 0.216);
+  background-color: var(--bg-section);
   border-radius: 4px;
   display: flex;
   padding: 1rem;
@@ -15,7 +15,11 @@
   h2 {
     font-family: var(--secondary-font);
     text-align: center;
-    margin: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    background-color: var(--nav-color);
+    border-radius: 4px;
   }
 }
 a {

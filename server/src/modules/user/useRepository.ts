@@ -8,13 +8,20 @@ type User = {
   email: string;
   hashedPassword: string;
   role: string;
+  picture: string;
 };
 
 class UserRepository {
   async create(user: Omit<User, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "insert into user (firstName, lastName, email, hashed_password) values (?, ?, ?, ?)",
-      [user.firstName, user.lastName, user.email, user.hashedPassword],
+      "insert into user (firstName, lastName, email, hashed_password, picture) values (?, ?, ?, ?, ?)",
+      [
+        user.firstName,
+        user.lastName,
+        user.email,
+        user.hashedPassword,
+        user.picture,
+      ],
     );
 
     return result.insertId;
@@ -44,8 +51,8 @@ class UserRepository {
 
   async update(user: User) {
     const [result] = await databaseClient.query<Result>(
-      "update user set  email = ?, hashed_password = ?, role = ? where id = ?",
-      [user.email, user.hashedPassword, user.role, user.id],
+      "update user set  lastName = ?, firstName = ?,picture = ? where id = ?",
+      [user.lastName, user.firstName, user.picture, user.id],
     );
     return result.affectedRows;
   }

@@ -1,11 +1,12 @@
 import axios from "axios";
 import dotenv from "dotenv";
 import type { RequestHandler } from "express";
-import userRepository from "./useRepository";
+
+import useRepository from "./useRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    const users = await userRepository.readAll();
+    const users = await useRepository.readAll();
     res.json(users);
   } catch (err) {
     next(err);
@@ -15,11 +16,33 @@ const browse: RequestHandler = async (req, res, next) => {
 const read: RequestHandler = async (req, res, next) => {
   try {
     const userId = Number(req.params.id);
-    const user = await userRepository.read(userId);
+    const user = await useRepository.read(userId);
     if (!user) {
       res.sendStatus(404);
     } else {
       res.json(user);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const edit: RequestHandler = async (req, res, next) => {
+  try {
+    const user = {
+      id: Number(req.params.id),
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      hashedPassword: req.body.hashed_password,
+      role: req.body.role,
+      picture: req.body.picture,
+    };
+    const affectedRows = await useRepository.update(user);
+    if (affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
     }
   } catch (err) {
     next(err);
@@ -34,8 +57,9 @@ const add: RequestHandler = async (req, res, next) => {
       email: req.body.email,
       hashedPassword: req.body.hashed_password,
       role: req.body.role,
+      picture: req.body.picture,
     };
-    const insertId = await userRepository.create(user);
+    const insertId = await useRepository.create(user);
     res.status(201).json({ insertId });
   } catch (err) {
     next(err);
@@ -45,7 +69,7 @@ const add: RequestHandler = async (req, res, next) => {
 const destroy: RequestHandler = async (req, res, next) => {
   try {
     const userId = Number(req.params.id);
-    await userRepository.delete(userId);
+    await useRepository.delete(userId);
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -60,4 +84,4 @@ const sendSuccessStatus: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, destroy, sendSuccessStatus };
+export default { browse, read, edit, add, destroy, sendSuccessStatus };

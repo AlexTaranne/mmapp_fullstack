@@ -9,12 +9,16 @@
     flex-direction: column;
     height: 33rem;
     max-width: 23rem;
-    background-color: rgba(128, 128, 128, 0.216);
+    background-color: var(--bg-section);
     padding: 1.5rem;
     border-radius: 4px;
   }
   img {
     height: 30rem;
+  }
+  a {
+    text-decoration: none;
+    color: var(--secondary-color);
   }
 }
 .title-cat {

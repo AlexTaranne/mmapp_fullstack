@@ -3,10 +3,15 @@
   flex-direction: column;
   margin: 1rem;
   padding: 1rem;
-  h3 {
+  color: var(--secondary-color);
+  h2 {
     text-align: center;
-    margin: 1rem;
+    margin: 0 auto;
     font-family: var(--secondary-font);
+    background-color: var(--nav-color);
+    color: var(--primary-color);
+    width: 70%;
+    border-radius: 4px;
   }
 }
 
@@ -28,7 +33,7 @@
   padding: 1rem;
   border-radius: 4px;
   width: 70%;
-  background-color: rgba(128, 128, 128, 0.216);
+  background-color: var(--bg-section);
   a {
     color: var(--secondary-color);
   }
@@ -51,5 +56,10 @@
   .sort-options {
     flex-direction: column;
     gap: 0.5rem;
+  }
+  .fighters-page {
+    h2 {
+      width: 95%;
+    }
   }
 }

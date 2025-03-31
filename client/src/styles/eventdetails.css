@@ -1,5 +1,5 @@
 .results {
-  background-color: rgba(128, 128, 128, 0.216);
+  background-color: var(--bg-section);
   border-radius: 4px;
   display: flex;
   padding: 1rem;
