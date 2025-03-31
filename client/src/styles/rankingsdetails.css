@@ -1,0 +1,27 @@
+.rank-all {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  margin: 1rem;
+  justify-content: center;
+  div {
+    display: flex;
+    flex-direction: column;
+    height: 33rem;
+    max-width: 23rem;
+    background-color: var(--bg-section);
+    padding: 1.5rem;
+    border-radius: 4px;
+  }
+  img {
+    height: 30rem;
+  }
+  a {
+    text-decoration: none;
+    color: var(--secondary-color);
+  }
+}
+.title-cat {
+  text-align: center;
+  margin: 1.5rem;
+}

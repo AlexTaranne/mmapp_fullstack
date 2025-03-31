@@ -4,11 +4,11 @@ export default function Footer() {
   return (
     <footer>
       <ul>
-        <li>Nous contacter</li>
-        <li>À propos de nous</li>
-        <li>Conditions générales</li>
+        <li>Contact</li>
+        <li>About us</li>
+        <li>Terms and Conditions</li>
       </ul>
-      <h4>Développer par Alex Taranne</h4>
+      <h4>Created by Alex Taranne</h4>
     </footer>
   );
 }

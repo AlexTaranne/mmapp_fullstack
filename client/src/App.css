@@ -2,17 +2,32 @@
   margin: 0;
   box-sizing: border-box;
   font-family: var(--primary-font);
-  color: var(--primary-color);
+}
+main {
+  background-color: var(--bg-color);
 }
 
 :root {
-  --primary-color: #a48134;
+  --primary-color: #ffffff;
   --secondary-color: #1e1e1e;
   --primary-font: "Quicksand", sans-serif;
   --secondary-font: "Audiowide", sans-serif;
-  --radius: 4px;
+  --bg-color: #fdfff7;
+  --nav-color: #a40606;
+  --bg-section: rgba(128, 128, 128, 0.216);
 }
 
-body {
-  background-color: var(--secondary-color);
+.dark {
+  --nav-color: rgb(31, 31, 31);
+  --bg-color: rgb(2, 2, 2);
+  --bg-section: rgb(72, 72, 72);
+  --secondary-color: white;
+  --card-background-color: rgb(65, 65, 65);
+}
+
+.light {
+  --bg-color: #fdfff7;
+  --secondary-color: #1e1e1e;
+  --main-font-color: black;
+  --card-background-color: aliceblue;
 }

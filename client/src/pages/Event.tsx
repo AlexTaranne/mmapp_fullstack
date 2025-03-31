@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import EventDetails from "../components/EventDetails";
+import "../styles/eventdetails.css";
 
 interface Fighter {
   FirstName: string;
@@ -14,16 +15,24 @@ interface EventType {
 }
 
 export default function Event() {
-  const event = useLoaderData() as EventType[];
+  const data = useLoaderData();
+  const events = Array.isArray(data) ? (data as EventType[]) : [];
+  console.info(data);
 
   return (
     <>
-      <h2>{event[0]?.Name}</h2>
-      <div>
-        {event.map((event) => (
-          <EventDetails key={event.id} event={event} />
-        ))}
-      </div>
+      {events.length > 0 ? (
+        <>
+          <h2>{events[0].Name}</h2>
+          <div className="all-results">
+            {events.map((eventItem) => (
+              <EventDetails key={eventItem.id} event={eventItem} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <p>Aucun événement trouvé</p>
+      )}
     </>
   );
 }

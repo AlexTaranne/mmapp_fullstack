@@ -1,0 +1,33 @@
+.results {
+  background-color: var(--bg-section);
+  border-radius: 4px;
+  display: flex;
+  padding: 1rem;
+  text-align: center;
+  justify-content: center;
+}
+.all-results {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 auto;
+  width: 90%;
+  padding-top: 2rem;
+}
+
+.fight {
+  color: var(--secondary-color);
+}
+
+@media screen and (min-width: 768px) {
+  .fights {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+  }
+  .left-results {
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+  }
+}

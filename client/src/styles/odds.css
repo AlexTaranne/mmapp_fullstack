@@ -1,0 +1,51 @@
+.odds {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem;
+  color: var(--secondary-color);
+  div {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-section);
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+}
+
+.all-odds {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.odd {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem;
+  background-color: var(--bg-section);
+  padding: 0.5rem;
+  border-radius: 4px;
+  p {
+    padding: 1rem;
+  }
+}
+
+.odds-title {
+  text-align: center;
+  font-family: var(--secondary-font);
+  margin-top: 1rem;
+  background-color: var(--nav-color);
+  color: var(--primary-color);
+  border-radius: 4px;
+}
+
+@media screen and (min-width: 768px) {
+  .all-odds {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .odd {
+    margin-top: 5rem;
+  }
+}

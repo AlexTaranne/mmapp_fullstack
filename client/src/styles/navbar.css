@@ -1,12 +1,10 @@
-/* Styles pour la barre de navigation */
-.navbar {
+nav {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-
-  border-bottom: 1px solid #a48134;
   color: var(--primary-color);
+  background-color: var(--nav-color);
   section {
     display: flex;
   }
@@ -20,31 +18,81 @@
   ul {
     display: flex;
     gap: 2rem;
-    margin-left: 18rem;
+    margin: 0 auto;
+    width: fit-content;
+  }
+  a {
+    text-decoration: none;
+    color: var(--primary-color);
   }
 }
 
 .nav-links {
   display: flex;
   list-style-type: none;
+  align-items: center;
+
+  a:hover {
+    border-bottom: 2px solid var(--primary-color);
+  }
 }
 
 .nav-links a {
-  color: var(--primary-color);
   text-decoration: none;
-  font-size: 18px;
 }
 
 .menu-icon {
   display: none;
   font-size: 30px;
   cursor: pointer;
-  color: white;
 }
 
 .title {
   display: flex;
   gap: 0.5rem;
+}
+
+.login-desktop {
+  margin-left: 3rem;
+  background-color: var(--bg-color);
+  width: 4rem;
+  padding: 0.3rem;
+  color: var(--secondary-color);
+  font-weight: bold;
+  border-radius: 4px;
+  text-align: center;
+}
+.login-mobile {
+  visibility: hidden;
+}
+.disconnect-mobile {
+  visibility: hidden;
+}
+.auth-profil {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.firstname-mobile {
+  visibility: hidden;
+}
+.disconnect-desktop {
+  button {
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+}
+.firstname-desktop {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+}
+.profil-picture {
+  width: 3rem;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -55,16 +103,20 @@
     position: absolute;
     top: 60px;
     left: 0;
-    background-color: #1e1e1e;
+    background-color: var(--nav-color);
     padding: 20px;
     z-index: 1;
   }
 
-  .navbar {
+  .disconnect {
+    display: none;
+  }
+  nav {
     justify-content: space-between;
-    color: black;
+
     ul {
       display: none;
+      margin: 0;
     }
   }
 
@@ -78,5 +130,39 @@
 
   .nav-links.active {
     display: block;
+  }
+  .login-desktop {
+    display: none;
+  }
+  .login-mobile {
+    visibility: visible;
+    background-color: var(--bg-color);
+    padding: 0.5rem;
+    border-radius: 4px;
+    color: var(--secondary-color);
+  }
+  .nav-links > a:last-child {
+    font-weight: bold;
+  }
+  .disconnect-mobile {
+    visibility: visible;
+    button {
+      border: none;
+      padding: 0.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+  }
+  .disconnect-desktop {
+    visibility: hidden;
+  }
+  .firstname-desktop {
+    display: none;
+  }
+  .auth-profil {
+    display: none;
+  }
+  .firstname-mobile {
+    visibility: visible;
   }
 }

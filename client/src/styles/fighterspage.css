@@ -1,0 +1,65 @@
+.fighters-page {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 1rem;
+  color: var(--secondary-color);
+  h2 {
+    text-align: center;
+    margin: 0 auto;
+    font-family: var(--secondary-font);
+    background-color: var(--nav-color);
+    color: var(--primary-color);
+    width: 70%;
+    border-radius: 4px;
+  }
+}
+
+.sort {
+  text-align: center;
+}
+
+.sort-options {
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+}
+
+.list-fighters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 4px;
+  width: 70%;
+  background-color: var(--bg-section);
+  a {
+    color: var(--secondary-color);
+  }
+}
+
+.list {
+  display: flex;
+  width: 40rem;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .list {
+    width: 18rem;
+  }
+  .list-fighters {
+    min-width: 99%;
+    margin-top: 2rem;
+  }
+  .sort-options {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .fighters-page {
+    h2 {
+      width: 95%;
+    }
+  }
+}

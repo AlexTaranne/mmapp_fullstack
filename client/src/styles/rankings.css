@@ -1,0 +1,42 @@
+.all-ranks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  margin: 0 auto;
+
+  a {
+    color: var(--secondary-color);
+  }
+  h2 {
+    background-color: var(--nav-color);
+    width: 98%;
+    text-align: center;
+    border-radius: 4px;
+    color: var(--primary-color);
+    font-family: var(--secondary-font);
+  }
+}
+.rankingscards {
+  height: 35rem;
+  max-width: 21rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--bg-section);
+  padding: 1.5rem;
+  border-radius: 4px;
+  img {
+    height: 28rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .all-ranks {
+    width: 80%;
+    h2 {
+      width: 94%;
+    }
+  }
+}
