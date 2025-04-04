@@ -246,7 +246,10 @@ VALUES
   ("Talbott", "Payton", "USA", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/4/TALBOTT_PAYTON_L_01-18.png?itok=xwSdRLoq", 2, 9, 1, ""),
   ("Tafa", "Justin", "New Zealand", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2025-02/TAFA_JUSTIN_L_02-08.png?itok=56Ehzsh6", 8, 7, 5, "Bad Man"),
   ("Topuria", "Aleksandre", "Georgia", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2025-02/TOPURIA_ALEKSANDRE_R_02-08.png?itok=-zdGfWk8", 3, 6, 1, "El Conquistador"),
-  ("Jousset", "Kevin", "France", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/JOUSSET_KEVIN_L_09-28.png?itok=2jUj7o-Z", 5, 10, 4, "Air");
+  ("Jousset", "Kevin", "France", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/JOUSSET_KEVIN_L_09-28.png?itok=2jUj7o-Z", 5, 10, 4, "Air"),
+  ("Onama", "David", "Ouganda", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-11/ONAMA_DAVID_L_11-16.png?itok=f78byVVY", 3, 13, 2, "Silent Assassin"),
+  ("Magomedov", "Abus", "Russia", "https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/2/MAGOMEDOV_ABUS_L_10-26.png?itok=BQCRDDts", 6, 27, 6, "Abus");
+
   
 
 CREATE table fights (
@@ -263,6 +266,9 @@ CREATE table fights (
   ("Jon Jones vs Lyoto Machida", "https://www.youtube.com/embed/Pzi8UFEWRxI", "Fight"),
   ("Georges Saint-Pierre vs Michael Bisping", "https://www.youtube.com/embed/JOREpJ7ANPA", "Fight"),
   ("Chuck Liddell vs Wanderlei Silva", "https://www.youtube.com/embed/yz6E5UFWs4k", "Fight"),
-  (" UFC London: Post-Fight Press Conference", "https://www.youtube.com/embed/vbnzTkSpYjA", "Interview");
+  ("UFC London: Post-Fight Press Conference", "https://www.youtube.com/embed/vbnzTkSpYjA", "Interview"),
+  ("Diego Lopes vs Brian Ortega", "https://www.youtube.com/embed/Poa5qLgcvS8", "Fight"),
+  ("Josh Emmett vs Bryce Mitchell", "https://www.youtube.com/embed/0z7k5dgY-BI", "Fight"),
+  ("Brandon Moreno Octagon interview", "https://www.youtube.com/embed/-N8KsWy5t8c", "Interview");
 
 

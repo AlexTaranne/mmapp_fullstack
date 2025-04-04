@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, Zoom, toast } from "react-toastify";
+
 import { editFighter } from "../services/request";
 
 interface FighterType {
@@ -63,8 +65,35 @@ export default function DashboardAdd() {
       .then((response) => {
         if (response.status === 201) {
           fetchFighters();
+          const notifySucces = () => {
+            toast.success("Fighter add with success.", {
+              position: "top-center",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              transition: Zoom,
+            });
+          };
+          notifySucces();
         } else {
-          alert(response.data.error);
+          const notifyError = () => {
+            toast.error(`${response.data.error}`, {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              transition: Zoom,
+            });
+          };
+          notifyError();
         }
       })
       .catch((error) => console.error("Erreur lors de l'ajout :", error));
@@ -165,15 +194,15 @@ export default function DashboardAdd() {
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
         />
-        <input type="submit" value="Ajouter" className="input-button" />
+        <input type="submit" value="Add" className="input-button" />
       </form>
 
       {fighters ? (
         fighters.map((fighter) => (
           <div className="card-fighter" key={fighter.id}>
-            <h5>
+            <h4>
               {fighter.lastName} {fighter.firstName}
-            </h5>
+            </h4>
             <div>
               <button type="button" onClick={() => deleteFighter(fighter.id)}>
                 <img src="/garbage.png" alt="" />
@@ -282,6 +311,19 @@ export default function DashboardAdd() {
           )}
         </div>
       </dialog>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Zoom}
+      />
     </div>
   );
 }

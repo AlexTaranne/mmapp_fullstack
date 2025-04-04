@@ -13,7 +13,7 @@ export default function VideoCard({ video }: VideoProps) {
       <iframe
         className="short-movie"
         width="100%"
-        height="auto"
+        height="80%"
         src={video.link}
         title="YouTube video player"
         frameBorder="0"

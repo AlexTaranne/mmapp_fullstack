@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useRevalidator } from "react-router-dom";
 import { useAuth } from "../services/AuthContext";
 import { useDarkTheme } from "../services/DarkThemeContext";
 import "../styles/profil.css";
@@ -28,6 +28,7 @@ export default function Profile() {
   const [firstNameForm, setFirstNameForm] = useState(firstName);
   const [lastNameForm, setLastNameForm] = useState(lastName);
   const [pictureForm, setPictureForm] = useState<File | string | null>(null);
+  const { revalidate } = useRevalidator();
 
   useEffect(() => {
     setFirstNameForm(firstName);
@@ -55,6 +56,7 @@ export default function Profile() {
       setFirstName(firstNameForm);
       setLastName(lastNameForm);
       setPicture(response.data.picture);
+      revalidate();
     } catch (error) {
       console.error("Error:", error);
     }
@@ -102,9 +104,10 @@ export default function Profile() {
         <input
           type="file"
           onChange={(e) => setPictureForm(e.target.files?.[0] || null)}
+          lang="en"
         />
         <button type="submit" className="maj-button">
-          Mettre à jour
+          Update profil
         </button>
       </form>
     </div>

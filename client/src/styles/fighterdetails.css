@@ -22,6 +22,10 @@
 .details-right {
   display: flex;
   flex-direction: column;
+  margin: 1rem;
+  background-color: var(--bg-section);
+  padding: 1rem;
+  border-radius: 4px;
 }
 @media screen and (min-width: 768px) {
   .fighter-details {
@@ -36,7 +40,7 @@
     width: 30%;
     border-radius: 4px;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
   }
   .details-left {
     background-color: var(--bg-section);

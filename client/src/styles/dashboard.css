@@ -108,6 +108,21 @@ form {
   margin: 0 auto;
 }
 
+dialog {
+  margin: auto auto;
+  padding: 4rem;
+  border-radius: 4px;
+  background-color: var(--nav-color);
+  color: var(--primary-color);
+  button {
+    margin-top: 1rem;
+    background-color: var(--bg-color);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .card-fighter {
     width: 60%;

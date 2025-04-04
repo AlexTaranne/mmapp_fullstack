@@ -1,7 +1,8 @@
 import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, Zoom } from "react-toastify";
 import { createUser } from "../services/request";
+
 import "../styles/login.css";
 
 interface UserData {
@@ -51,7 +52,7 @@ export default function SignupForm() {
     <div className="login">
       <form onSubmit={handleSubmit}>
         <h1>Create your account</h1>
-        <h3>All fiels are required</h3>
+        <h3>All fields are required</h3>
 
         <label htmlFor="email">
           Email<p>*</p>
@@ -130,6 +131,19 @@ export default function SignupForm() {
           </button>
         </div>
       </form>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Zoom}
+      />
     </div>
   );
 }

@@ -32,7 +32,7 @@ export default function Homepage() {
     rankings: NewsTypes[];
   };
 
-  const events = Array.isArray(data) ? data.slice(11).slice(0, -3) : [];
+  const events = Array.isArray(data) ? data.slice(11).slice(0, -6) : [];
   const someNews = Array.isArray(news) ? news.slice(0, -1) : [];
   const rank = rankings.length > 0 ? rankings[0] : null;
   const rankPound = rank ? rank.fighters : [];

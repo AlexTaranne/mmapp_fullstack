@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Zoom, toast } from "react-toastify";
 
 const KEY = import.meta.env.VITE_API_KEY;
 const KEY_2 = import.meta.env.VITE_API_KEY_2;
@@ -107,13 +108,50 @@ const getFighterByName = async (firstName: string, lastName: string) => {
 };
 
 const createUser = (userData: UserData): Promise<boolean> => {
-  return axios.post(`${API}/api/users`, userData).then((response) => {
-    if (response.status === 201) {
-      return true;
-    }
-    response.data.error;
-    return false;
-  });
+  return axios
+    .post(`${API}/api/users`, userData)
+    .then((response) => {
+      if (response.status === 201) {
+        toast.success("Your account has been created.", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Zoom,
+        });
+        return true;
+      }
+      toast.error(`${response.data.error}`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Zoom,
+      });
+      return false;
+    })
+    .catch(() => {
+      toast.error("An error occurred while creating the account.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Zoom,
+      });
+      return false;
+    });
 };
 
 const getOdds = () => {

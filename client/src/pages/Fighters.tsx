@@ -13,7 +13,7 @@ interface Fighter {
 
 export default function Fighters() {
   const fighters = useLoaderData() as Fighter[];
-  console.info(fighters);
+
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
   const [weightClass, setWeightClass] = useState("");

@@ -12,6 +12,7 @@
   img {
     width: 20rem;
     margin-bottom: 2rem;
+    border-radius: 4px;
   }
 }
 .dark-mode {
