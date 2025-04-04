@@ -29,6 +29,7 @@ export default function Profile() {
   const [lastNameForm, setLastNameForm] = useState(lastName);
   const [pictureForm, setPictureForm] = useState<File | string | null>(null);
   const { revalidate } = useRevalidator();
+  const API = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     setFirstNameForm(firstName);
@@ -49,10 +50,7 @@ export default function Profile() {
     }
 
     try {
-      const response = await axios.put(
-        `http://localhost:3310/api/users/${id}`,
-        formData,
-      );
+      const response = await axios.put(`${API}/api/users/${id}`, formData);
       setFirstName(firstNameForm);
       setLastName(lastNameForm);
       setPicture(response.data.picture);
@@ -73,7 +71,7 @@ export default function Profile() {
       <h2>{firstName}'s profil</h2>
 
       <img
-        src={`http://localhost:3310/uploads/${user.picture}`}
+        src={`${API}/uploads/${user.picture}`}
         alt="Profil"
         onError={(e) => console.error("Image not found", e)}
       />

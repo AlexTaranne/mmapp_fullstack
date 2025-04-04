@@ -24,7 +24,6 @@ interface Fighter {
 
 export default function FighterDetails() {
   const fighter = useLoaderData() as Fighter;
-  console.info(fighter);
 
   return (
     <div className="fighter-details">
